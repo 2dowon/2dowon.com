@@ -3,7 +3,7 @@ module.exports = {
   darkMode: "selector",
   content: ["./app/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
-    extend: {},
+    extend: { colors: { "primary-bg": "#171717", "primary-blue": "#153A8B" } },
   },
   plugins: [],
 };
