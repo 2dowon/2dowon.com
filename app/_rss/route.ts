@@ -1,4 +1,4 @@
-import { getBlogPosts } from "app/posts/utils";
+import { getBlogPosts } from "app/_utils/mdx.utils";
 import { baseUrl } from "app/sitemap";
 
 export async function GET() {

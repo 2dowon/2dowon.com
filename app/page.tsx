@@ -1,21 +1,17 @@
-import { BlogPosts } from 'app/components/posts'
+import Title from "./_components/common/Title";
 
 export default function Page() {
   return (
-    <section>
-      <h1 className="mb-8 text-2xl font-semibold tracking-tighter">
-        My Portfolio
-      </h1>
-      <p className="mb-4">
-        {`I'm a Vim enthusiast and tab advocate, finding unmatched efficiency in
-        Vim's keystroke commands and tabs' flexibility for personal viewing
-        preferences. This extends to my support for static typing, where its
-        early error detection ensures cleaner code, and my preference for dark
-        mode, which eases long coding sessions by reducing eye strain.`}
-      </p>
-      <div className="my-8">
-        <BlogPosts />
+    <section className="mb-[10rem]">
+      <div>
+        <Title>2dowon</Title>
+        <p>Frontend Developer</p>
+        <p>깊이 파기 위해 넓게 삽질하고 있습니다.</p>
+      </div>
+
+      <div className="mt-[5rem]">
+        <p>Recent Posts ✨</p>
       </div>
     </section>
-  )
+  );
 }

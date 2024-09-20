@@ -1,11 +1,10 @@
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
-import { themeEffect } from "utils/themeEffect";
-import Footer from "./components/footer";
-import { Navbar } from "./components/nav";
+import Footer from "./_components/layout/Footer";
+import HeaderNav from "./_components/layout/HeaderNav";
+import { FreesentationFont } from "./_fonts/font";
+import { themeEffect } from "./_utils/themeEffect";
 import "./global.css";
 import { baseUrl } from "./sitemap";
 
@@ -37,8 +36,6 @@ export const metadata: Metadata = {
   },
 };
 
-const cx = (...classes) => classes.filter(Boolean).join(" ");
-
 export default function RootLayout({
   children,
 }: {
@@ -47,11 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cx(
-        "text-black bg-white dark:text-white dark:bg-black",
-        GeistSans.variable,
-        GeistMono.variable
-      )}
+      className={`text-black bg-white dark:text-zinc-50 dark:bg-primary-bg ${FreesentationFont.className}`}
     >
       <head>
         <script
@@ -62,7 +55,7 @@ export default function RootLayout({
       </head>
       <body className="max-w-xl mx-4 mt-8 antialiased lg:mx-auto">
         <main className="flex flex-col flex-auto min-w-0 px-2 mt-6 md:px-0">
-          <Navbar />
+          <HeaderNav />
           {children}
           <Footer />
           <Analytics />

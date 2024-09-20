@@ -1,12 +1,7 @@
+import { siteConfig } from "app/config";
 import fs from "fs";
 import path from "path";
-
-type Metadata = {
-  title: string;
-  publishedAt: string;
-  summary: string;
-  image?: string;
-};
+import { IBlogPost, IMetadata } from "./interfaces/mdx.interface";
 
 function parseFrontmatter(fileContent: string) {
   let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
@@ -14,16 +9,16 @@ function parseFrontmatter(fileContent: string) {
   let frontMatterBlock = match![1];
   let content = fileContent.replace(frontmatterRegex, "").trim();
   let frontMatterLines = frontMatterBlock.trim().split("\n");
-  let metadata: Partial<Metadata> = {};
+  let metadata: Partial<IMetadata> = {};
 
   frontMatterLines.forEach((line) => {
     let [key, ...valueArr] = line.split(": ");
     let value = valueArr.join(": ").trim();
     value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-    metadata[key.trim() as keyof Metadata] = value;
+    metadata[key.trim() as keyof IMetadata] = value;
   });
 
-  return { metadata: metadata as Metadata, content };
+  return { metadata: metadata as IMetadata, content };
 }
 
 function getMDXFiles(dir) {
@@ -40,9 +35,11 @@ function getMDXData(dir) {
   return mdxFiles.map((file) => {
     let { metadata, content } = readMDXFile(path.join(dir, file));
     let slug = path.basename(file, path.extname(file));
+    let year = metadata.publishedAt.slice(0, 4);
 
     return {
       metadata,
+      year,
       slug,
       content,
     };
@@ -50,7 +47,22 @@ function getMDXData(dir) {
 }
 
 export function getBlogPosts() {
-  return getMDXData(path.join(process.cwd(), "posts"));
+  const sinceYear = siteConfig.since;
+  const currentYear = new Date().getFullYear();
+
+  const mdxData: IBlogPost[] = [];
+
+  for (let i = sinceYear; i <= currentYear; i++) {
+    mdxData.push(
+      ...getMDXData(path.join(process.cwd(), "articles", "blog", `${i}`))
+    );
+  }
+
+  return mdxData;
+}
+
+export function getTagSnippets(tag: string) {
+  return getMDXData(path.join(process.cwd(), "articles", "snippets", tag));
 }
 
 export function formatDate(date: string, includeRelative = false) {

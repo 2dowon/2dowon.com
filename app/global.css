@@ -50,11 +50,11 @@ html {
 }
 
 .prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  @apply underline transition-all decoration-zinc-400 dark:decoration-zinc-600 underline-offset-2 decoration-[0.1em];
 }
 
 .prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
+  @apply text-zinc-300 dark:text-zinc-700;
   content: "#";
 }
 
@@ -63,7 +63,7 @@ html {
 }
 
 .prose pre {
-  @apply px-3 py-2 overflow-x-auto text-sm border rounded-lg bg-neutral-50 dark:bg-neutral-900 border-neutral-200 dark:border-neutral-900;
+  @apply px-3 py-2 overflow-x-auto text-sm border rounded-lg bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-900;
 }
 
 .prose code {
@@ -86,7 +86,7 @@ html {
 }
 
 .prose p {
-  @apply my-4 text-neutral-800 dark:text-neutral-200;
+  @apply my-4 text-zinc-800 dark:text-zinc-200;
 }
 
 .prose h1 {
