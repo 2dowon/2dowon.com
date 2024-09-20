@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 
 //   let {
 //     title,
-//     publishedAt: publishedTime,
+//     date: publishedTime,
 //     summary: description,
 //     image,
 //   } = post.metadata;
@@ -47,7 +47,7 @@ export default async function Snippet({ params }) {
   const { tag, slug } = params;
   const snippet = getTagSnippets(tag).find((snippet) => snippet.slug === slug);
   const { metadata, content } = snippet ?? {};
-  const { title = "", publishedAt = "", summary, image } = metadata ?? {};
+  const { title = "", date = "", summary, image } = metadata ?? {};
 
   if (!snippet) {
     notFound();
@@ -63,8 +63,8 @@ export default async function Snippet({ params }) {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: title,
-            datePublished: publishedAt,
-            dateModified: publishedAt,
+            datePublished: date,
+            dateModified: date,
             description: summary,
             image: image
               ? `${baseUrl}${image}`
@@ -80,7 +80,7 @@ export default async function Snippet({ params }) {
       <h1 className="text-2xl font-semibold tracking-tighter title">{title}</h1>
       <div className="flex items-center justify-between mt-2 mb-8 text-sm">
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          {formatDate(publishedAt)}
+          {formatDate(date)}
         </p>
       </div>
       <article className="prose">

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const BlogPostItem = ({ post }: { post: IBlogPost }) => {
   const { year, slug, metadata } = post;
-  const { title, summary, publishedAt } = metadata;
+  const { title, summary, date } = metadata;
 
   return (
     <Link key={slug} href={`/blog/${year}/${slug}`}>
@@ -17,7 +17,7 @@ const BlogPostItem = ({ post }: { post: IBlogPost }) => {
         </div>
         <div>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 text-end">
-            {formatDate(publishedAt, false)}
+            {formatDate(date, false)}
           </p>
         </div>
       </div>

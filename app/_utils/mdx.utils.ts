@@ -35,7 +35,7 @@ function getMDXData(dir) {
   return mdxFiles.map((file) => {
     let { metadata, content } = readMDXFile(path.join(dir, file));
     let slug = path.basename(file, path.extname(file));
-    let year = metadata.publishedAt.slice(0, 4);
+    let year = metadata.date.slice(0, 4);
 
     return {
       metadata,
@@ -54,7 +54,7 @@ export function getBlogPosts() {
 
   for (let i = sinceYear; i <= currentYear; i++) {
     mdxData.push(
-      ...getMDXData(path.join(process.cwd(), "articles", "blog", `${i}`))
+      ...getMDXData(path.join(process.cwd(), "archives", "blog", `${i}`))
     );
   }
 
@@ -62,7 +62,7 @@ export function getBlogPosts() {
 }
 
 export function getTagSnippets(tag: string) {
-  return getMDXData(path.join(process.cwd(), "articles", "snippets", tag));
+  return getMDXData(path.join(process.cwd(), "archives", "snippets", tag));
 }
 
 export function formatDate(date: string, includeRelative = false) {

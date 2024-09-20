@@ -11,7 +11,7 @@ import { notFound } from "next/navigation";
 
 //   let {
 //     title,
-//     publishedAt: publishedTime,
+//     date: publishedTime,
 //     summary: description,
 //     image,
 //   } = post.metadata;
@@ -47,14 +47,14 @@ export default async function Blog({ params }) {
   const { slug } = params;
   const post = getBlogPosts().find((post) => post.slug === slug);
   const { metadata, content } = post ?? {};
-  const { title = "", publishedAt = "", summary, image } = metadata ?? {};
+  const { title = "", date = "", summary, image } = metadata ?? {};
 
   if (!post) {
     notFound();
   }
 
   return (
-    <section>
+    <section className="mb-[5rem]">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -63,8 +63,8 @@ export default async function Blog({ params }) {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
             headline: title,
-            datePublished: publishedAt,
-            dateModified: publishedAt,
+            datePublished: date,
+            dateModified: date,
             description: summary,
             image: image
               ? `${baseUrl}${image}`
@@ -80,7 +80,7 @@ export default async function Blog({ params }) {
       <h1 className="text-2xl font-semibold tracking-tighter title">{title}</h1>
       <div className="flex items-center justify-between mt-2 mb-8 text-sm">
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
-          {formatDate(publishedAt)}
+          {formatDate(date)}
         </p>
       </div>
       <article className="prose">

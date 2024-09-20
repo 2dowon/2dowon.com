@@ -1,6 +1,6 @@
 export interface IMetadata {
   title: string;
-  publishedAt: string;
+  date: string;
   summary: string;
   image?: string;
 }

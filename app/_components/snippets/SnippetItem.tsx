@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const SnippetItem = ({ tag, snippet }: { tag: string; snippet: IBlogPost }) => {
   const { metadata, slug } = snippet;
-  const { title, publishedAt } = metadata;
+  const { title, date } = metadata;
 
   return (
     <Link href={`/snippets/${tag}/${slug}`}>
@@ -13,7 +13,7 @@ const SnippetItem = ({ tag, snippet }: { tag: string; snippet: IBlogPost }) => {
           [{tag}] {title}
         </p>
         <p className="text-xs text-zinc-600 dark:text-zinc-400">
-          {formatDate(publishedAt, false)}
+          {formatDate(date, false)}
         </p>
       </div>
     </Link>

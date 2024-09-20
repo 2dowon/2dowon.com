@@ -8,10 +8,7 @@ const SnippetsTagSection = ({ tag }: { tag: string }) => {
     <div>
       {snippets
         .sort((a, b) => {
-          return new Date(a.metadata.publishedAt) >
-            new Date(b.metadata.publishedAt)
-            ? -1
-            : 1;
+          return new Date(a.metadata.date) > new Date(b.metadata.date) ? -1 : 1;
         })
         .map((snippet) => {
           return <SnippetItem tag={tag} snippet={snippet} />;

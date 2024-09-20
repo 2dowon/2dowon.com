@@ -8,10 +8,7 @@ const BlogPostsSection = () => {
     <div className="flex flex-col space-y-[1rem] lg:space-y-[2rem]">
       {posts
         .sort((a, b) => {
-          return new Date(a.metadata.publishedAt) >
-            new Date(b.metadata.publishedAt)
-            ? -1
-            : 1;
+          return new Date(a.metadata.date) > new Date(b.metadata.date) ? -1 : 1;
         })
         .map((post) => {
           return <BlogPostItem post={post} />;

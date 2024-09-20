@@ -10,7 +10,7 @@ export default function Page() {
       </div>
 
       <div className="mt-[5rem]">
-        <p>Recent Posts ✨</p>
+        <p className="text-lg font-bold">Recent Posts ✨</p>
       </div>
     </section>
   );
