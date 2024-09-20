@@ -16,7 +16,7 @@ const HeaderNav = () => {
             <Link href="/">
               <Image
                 src={LogoImage}
-                alt="nosearch profile image"
+                alt="2dowon blog logo image"
                 width={30}
                 height={30}
                 className="h-[3rem] w-[3rem] object-contain"
