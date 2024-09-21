@@ -3,7 +3,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import Footer from "./_components/layout/Footer";
 import HeaderNav from "./_components/layout/HeaderNav";
-import { FreesentationFont } from "./_fonts/font";
 import { themeEffect } from "./_utils/themeEffect";
 import "./global.css";
 import { baseUrl } from "./sitemap";
@@ -43,10 +42,17 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
-      className={`text-black bg-white dark:text-zinc-50 dark:bg-primary-bg ${FreesentationFont.className}`}
+      lang="ko"
+      className="text-black bg-white dark:text-zinc-50 dark:bg-primary-bg"
     >
       <head>
+        <link
+          rel="stylesheet"
+          as="style"
+          // @ts-ignore
+          crossOrigin="true"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css"
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `(${themeEffect.toString()})()`,
