@@ -1,47 +1,41 @@
 import { CustomMDX } from "app/_components/mdx";
 import { formatDate } from "app/_utils/date.util";
 import { getTagSnippets } from "app/_utils/mdx.utils";
+import { baseUrl } from "app/sitemap";
 import { notFound } from "next/navigation";
 
-// export function generateMetadata({ params }) {
-//   let post = getBlogPosts().find((post) => post.slug === params.slug);
-//   if (!post) {
-//     return;
-//   }
+export function generateMetadata({ params }) {
+  const { tag, slug } = params;
 
-//   let {
-//     title,
-//     date: publishedTime,
-//     summary: description,
-//     image,
-//   } = post.metadata;
-//   let ogImage = image
-//     ? image
-//     : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+  const snippet = getTagSnippets(tag).find((snippet) => snippet.slug === slug);
+  if (!snippet) {
+    return;
+  }
 
-//   return {
-//     title,
-//     description,
-//     openGraph: {
-//       title,
-//       description,
-//       type: "article",
-//       publishedTime,
-//       url: `${baseUrl}/blog/${post.slug}`,
-//       images: [
-//         {
-//           url: ogImage,
-//         },
-//       ],
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title,
-//       description,
-//       images: [ogImage],
-//     },
-//   };
-// }
+  let {
+    title,
+    date: publishedTime,
+    summary: description = "",
+  } = snippet.metadata;
+  let ogImage = `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime,
+      url: `${baseUrl}/snippets/${tag}/${slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Snippet({ params }) {
   const { tag, slug } = params;
@@ -55,7 +49,7 @@ export default async function Snippet({ params }) {
 
   return (
     <section>
-      {/* <script
+      <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
@@ -69,14 +63,14 @@ export default async function Snippet({ params }) {
             // image: image
             //   ? `${baseUrl}${image}`
             //   : `/og?title=${encodeURIComponent(title)}`,
-            url: `${baseUrl}/snippets/${snippet.slug}`,
+            url: `${baseUrl}/snippets/${tag}/${slug}`,
             author: {
               "@type": "Person",
-              name: "My Portfolio",
+              name: "2dowon",
             },
           }),
         }}
-      /> */}
+      />
       <h1 className="text-2xl font-semibold tracking-tighter title">{title}</h1>
       <div className="flex items-center justify-between mt-2 mb-8 text-sm">
         <p className="text-sm text-zinc-600 dark:text-zinc-400">

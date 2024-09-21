@@ -1,50 +1,40 @@
 import { CustomMDX } from "app/_components/mdx";
 import { formatDate } from "app/_utils/date.util";
 import { getBlogPosts } from "app/_utils/mdx.utils";
+import { baseUrl } from "app/sitemap";
 import { notFound } from "next/navigation";
 
-// export function generateMetadata({ params }) {
-//   let post = getBlogPosts().find((post) => post.slug === params.slug);
-//   if (!post) {
-//     return;
-//   }
+export function generateMetadata({ params }) {
+  const { year, slug } = params;
 
-//   let {
-//     title,
-//     date: publishedTime,
-//     summary: description,
-//     image,
-//   } = post.metadata;
-//   let ogImage = image
-//     ? image
-//     : `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+  let post = getBlogPosts().find((post) => post.slug === slug);
+  if (!post) {
+    return;
+  }
 
-//   return {
-//     title,
-//     description,
-//     openGraph: {
-//       title,
-//       description,
-//       type: "article",
-//       publishedTime,
-//       url: `${baseUrl}/blog/${post.slug}`,
-//       images: [
-//         {
-//           url: ogImage,
-//         },
-//       ],
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title,
-//       description,
-//       images: [ogImage],
-//     },
-//   };
-// }
+  let { title, date: publishedTime, summary: description } = post.metadata;
+  let ogImage = `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "article",
+      publishedTime,
+      url: `${baseUrl}/blog/${year}/${slug}`,
+      images: [
+        {
+          url: ogImage,
+        },
+      ],
+    },
+  };
+}
 
 export default async function Blog({ params }) {
-  const { slug } = params;
+  const { year, slug } = params;
   const post = getBlogPosts().find((post) => post.slug === slug);
   const { metadata, content } = post ?? {};
   const { title = "", date = "", summary } = metadata ?? {};
@@ -55,7 +45,7 @@ export default async function Blog({ params }) {
 
   return (
     <section className="mb-[5rem]">
-      {/* <script
+      <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
@@ -66,17 +56,17 @@ export default async function Blog({ params }) {
             datePublished: date,
             dateModified: date,
             description: summary,
-            image: image
-              ? `${baseUrl}${image}`
-              : `/og?title=${encodeURIComponent(title)}`,
-            url: `${baseUrl}/posts/${post.slug}`,
+            // image: image
+            //   ? `${baseUrl}${image}`
+            //   : `/og?title=${encodeURIComponent(title)}`,
+            url: `${baseUrl}/posts/${year}/${slug}`,
             author: {
               "@type": "Person",
-              name: "My Portfolio",
+              name: "2dowon",
             },
           }),
         }}
-      /> */}
+      />
       <h1 className="text-2xl font-semibold tracking-tighter title">{title}</h1>
       <div className="flex items-center justify-between mt-2 mb-8 text-sm">
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
