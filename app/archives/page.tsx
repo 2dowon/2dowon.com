@@ -13,15 +13,21 @@ export default function Page() {
     <section className="mb-[10rem]">
       <Title>Archives</Title>
 
-      <div className="lg:grid lg:grid-cols-2 lg:gap-x-[3rem]">
+      <div className="md:grid md:grid-cols-2 md:gap-x-[3rem] space-y-[2rem] md:space-y-0">
         <div>
           <SubTitle>Posts</SubTitle>
-          <BlogPostsSection />
+          <BlogPostsSection
+            type="SIMPLE"
+            className="flex flex-col space-y-[0.5rem] md:space-y-[1rem]"
+          />
         </div>
 
         <div>
           <SubTitle>Snippets</SubTitle>
-          <SnippetsSection />
+          <SnippetsSection
+            type="SIMPLE"
+            tagSectionClassName="flex flex-col space-y-[0.5rem] md:space-y-[1rem]"
+          />
         </div>
       </div>
     </section>

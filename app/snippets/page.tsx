@@ -11,7 +11,12 @@ export default function Page() {
     <section className="mb-[10rem]">
       <Title>Snippets</Title>
 
-      <SnippetsSection isTagSelectorVisible />
+      <SnippetsSection
+        type="DEFAULT"
+        isTagSelectorVisible
+        isTagTitleVisible
+        tagSectionClassName="md:grid-cols-2 md:grid md:gap-[1rem] flex flex-col space-y-[1rem] md:space-y-0"
+      />
     </section>
   );
 }

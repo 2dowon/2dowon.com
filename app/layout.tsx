@@ -53,8 +53,8 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="max-w-xl mx-4 mt-8 antialiased lg:mx-auto">
-        <main className="flex flex-col flex-auto min-w-0 px-2 mt-6 md:px-0">
+      <body>
+        <main className="max-w-[55rem] mx-[1rem] mt-[2rem] md:mx-auto">
           <HeaderNav />
           {children}
           <Footer />

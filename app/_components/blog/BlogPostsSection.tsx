@@ -1,16 +1,28 @@
 import { getBlogPosts } from "app/_utils/mdx.utils";
 import BlogPostItem from "./BlogPostItem";
+import BlogPostSimpleItem from "./BlogPostSimpleItem";
 
-const BlogPostsSection = () => {
+type BlogPostType = "DEFAULT" | "SIMPLE";
+
+const BlogPostsSection = ({
+  type,
+  className = "",
+}: {
+  type: BlogPostType;
+  className?: string;
+}) => {
   const posts = getBlogPosts();
 
   return (
-    <div className="flex flex-col space-y-[1rem] lg:space-y-[2rem]">
+    <div className={className}>
       {posts
         .sort((a, b) => {
           return new Date(a.metadata.date) > new Date(b.metadata.date) ? -1 : 1;
         })
         .map((post) => {
+          if (type === "SIMPLE") {
+            return <BlogPostSimpleItem post={post} />;
+          }
           return <BlogPostItem post={post} />;
         })}
     </div>

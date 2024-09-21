@@ -10,10 +10,12 @@ const BlogPostItem = ({ post }: { post: IBlogPost }) => {
     <Link key={slug} href={`/blog/${year}/${slug}`}>
       <div className="flex flex-col gap-y-[1rem] group">
         <div>
-          <p className="font-extrabold lg:text-lg text-md group-hover:underline underline-offset-4">
+          <p className="font-extrabold md:text-lg text-base group-hover:underline underline-offset-4">
             {title}
           </p>
-          <p className="text:sm lg:text-md line-clamp-1 ">{summary}</p>
+          <p className="text:sm md:text-base line-clamp-1 text-zinc-100">
+            {summary}
+          </p>
         </div>
         <div>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 text-end">

@@ -8,7 +8,7 @@ export default function SubTitle({
     <h2
       {...props}
       className={$(
-        "text-2xl mb-[0.5rem] lg:mb-[1rem] font-bold tracking-tight md:text-4xl",
+        "text-xl mb-[0.5rem] md:mb-[1rem] font-bold tracking-tight md:text-3xl",
         className
       )}
     />

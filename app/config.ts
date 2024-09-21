@@ -3,7 +3,7 @@ export const siteConfig = {
   title: "2down blog",
   description: "",
   copyright: "2dowon © All rights reserved.",
-  since: 2022,
+  since: 2024,
   googleAnalyticsId: "",
   author: {
     name: "DOWON LEE",

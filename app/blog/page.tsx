@@ -11,7 +11,10 @@ export default function Page() {
     <section className="mb-[10rem]">
       <Title>Blog</Title>
 
-      <BlogPostsSection />
+      <BlogPostsSection
+        type="DEFAULT"
+        className="md:grid-cols-2 md:grid md:gap-x-[3rem] md:gap-y-[4rem] flex flex-col space-y-[1rem] md:space-y-0"
+      />
     </section>
   );
 }

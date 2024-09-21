@@ -6,8 +6,8 @@ import { ThemeSwitcher } from "../ThemeSwitcher";
 
 const HeaderNav = () => {
   return (
-    <aside className="-ml-[8px] mb-16 tracking-tight">
-      <div className="flex justify-between lg:sticky lg:top-20">
+    <aside className="-ml-[8px] mb-[2rem] md:mb-[3rem] tracking-tight">
+      <div className="flex justify-between md:sticky md:top-20">
         <nav
           className="relative flex flex-row items-start px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
           id="nav"
@@ -17,11 +17,12 @@ const HeaderNav = () => {
               <Image
                 src={LogoImage}
                 alt="2dowon blog logo image"
-                width={30}
-                height={30}
+                width={300}
+                height={300}
                 className="h-[3rem] w-[3rem] object-contain"
               />
             </Link>
+
             {siteConfig.menus.map(({ label, path }) => {
               return (
                 <Link
