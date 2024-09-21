@@ -1,8 +1,8 @@
 export interface IMetadata {
   title: string;
   date: string;
-  summary: string;
-  image?: string;
+  summary?: string;
+  tag?: string;
 }
 
 export interface IBlogPost {

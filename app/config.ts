@@ -30,7 +30,7 @@ export const siteConfig = {
       path: "/archives",
     },
   ],
-  snippetTags: ["test"],
+  snippetTags: ["git"],
 };
 
 // export const seoConfig: DefaultSeoProps = {

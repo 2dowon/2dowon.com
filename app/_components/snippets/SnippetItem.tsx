@@ -1,5 +1,5 @@
+import { formatDate } from "app/_utils/date.util";
 import { IBlogPost } from "app/_utils/interfaces/mdx.interface";
-import { formatDate } from "app/_utils/mdx.utils";
 import Link from "next/link";
 
 const SnippetItem = ({ tag, snippet }: { tag: string; snippet: IBlogPost }) => {

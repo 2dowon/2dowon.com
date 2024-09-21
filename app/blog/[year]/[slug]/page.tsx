@@ -1,6 +1,6 @@
 import { CustomMDX } from "app/_components/mdx";
-import { formatDate, getBlogPosts } from "app/_utils/mdx.utils";
-import { baseUrl } from "app/sitemap";
+import { formatDate } from "app/_utils/date.util";
+import { getBlogPosts } from "app/_utils/mdx.utils";
 import { notFound } from "next/navigation";
 
 // export function generateMetadata({ params }) {
@@ -47,7 +47,7 @@ export default async function Blog({ params }) {
   const { slug } = params;
   const post = getBlogPosts().find((post) => post.slug === slug);
   const { metadata, content } = post ?? {};
-  const { title = "", date = "", summary, image } = metadata ?? {};
+  const { title = "", date = "", summary } = metadata ?? {};
 
   if (!post) {
     notFound();
@@ -55,7 +55,7 @@ export default async function Blog({ params }) {
 
   return (
     <section className="mb-[5rem]">
-      <script
+      {/* <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
@@ -76,7 +76,7 @@ export default async function Blog({ params }) {
             },
           }),
         }}
-      />
+      /> */}
       <h1 className="text-2xl font-semibold tracking-tighter title">{title}</h1>
       <div className="flex items-center justify-between mt-2 mb-8 text-sm">
         <p className="text-sm text-zinc-600 dark:text-zinc-400">

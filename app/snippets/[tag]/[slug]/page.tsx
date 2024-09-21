@@ -1,6 +1,6 @@
 import { CustomMDX } from "app/_components/mdx";
-import { formatDate, getTagSnippets } from "app/_utils/mdx.utils";
-import { baseUrl } from "app/sitemap";
+import { formatDate } from "app/_utils/date.util";
+import { getTagSnippets } from "app/_utils/mdx.utils";
 import { notFound } from "next/navigation";
 
 // export function generateMetadata({ params }) {
@@ -47,7 +47,7 @@ export default async function Snippet({ params }) {
   const { tag, slug } = params;
   const snippet = getTagSnippets(tag).find((snippet) => snippet.slug === slug);
   const { metadata, content } = snippet ?? {};
-  const { title = "", date = "", summary, image } = metadata ?? {};
+  const { title = "", date = "", summary } = metadata ?? {};
 
   if (!snippet) {
     notFound();
@@ -55,7 +55,7 @@ export default async function Snippet({ params }) {
 
   return (
     <section>
-      <script
+      {/* <script
         type="application/ld+json"
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
@@ -66,9 +66,9 @@ export default async function Snippet({ params }) {
             datePublished: date,
             dateModified: date,
             description: summary,
-            image: image
-              ? `${baseUrl}${image}`
-              : `/og?title=${encodeURIComponent(title)}`,
+            // image: image
+            //   ? `${baseUrl}${image}`
+            //   : `/og?title=${encodeURIComponent(title)}`,
             url: `${baseUrl}/snippets/${snippet.slug}`,
             author: {
               "@type": "Person",
@@ -76,7 +76,7 @@ export default async function Snippet({ params }) {
             },
           }),
         }}
-      />
+      /> */}
       <h1 className="text-2xl font-semibold tracking-tighter title">{title}</h1>
       <div className="flex items-center justify-between mt-2 mb-8 text-sm">
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
