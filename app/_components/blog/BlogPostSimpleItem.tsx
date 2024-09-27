@@ -9,7 +9,7 @@ const BlogPostSimpleItem = ({ post }: { post: IBlogPost }) => {
   return (
     <Link key={slug} href={`/blog/${year}/${slug}`}>
       <div className="flex items-center justify-between group text-zinc-600 dark:text-zinc-400">
-        <p className="text-base font-bold break-all underline-offset-4 line-clamp-1 group-hover:underline">
+        <p className="text-base break-all underline-offset-4 group-hover:underline">
           {title}
         </p>
         <p className="text-xs md:text-sm text-end ml-[0.5rem]">

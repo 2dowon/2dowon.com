@@ -13,7 +13,7 @@ export default function Page() {
 
       <BlogPostsSection
         type="DEFAULT"
-        className="md:grid-cols-2 md:grid md:gap-x-[3rem] md:gap-y-[4rem] flex flex-col space-y-[1rem] md:space-y-0"
+        className="flex flex-col space-y-[1rem] md:space-y-[2rem]"
       />
     </section>
   );

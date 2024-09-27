@@ -83,27 +83,27 @@ html {
 
 .prose img {
   /* Don't apply styles to next/image */
-  @apply m-0;
+  @apply m-0 mt-[1rem] mb-[2rem];
 }
 
 .prose p {
-  @apply my-4 text-zinc-800 dark:text-zinc-200;
+  @apply my-4 leading-[150%] text-zinc-800 dark:text-zinc-200;
 }
 
 .prose h1 {
-  @apply mt-6 mb-2 text-4xl font-medium tracking-tight;
+  @apply mt-[4rem] mb-[1.5rem] text-2xl md:text-[1.7rem] md:leading-[2rem] font-semibold tracking-tight;
 }
 
 .prose h2 {
-  @apply mt-6 mb-2 text-xl font-medium tracking-tight;
+  @apply mt-[2rem] mb-[1rem] text-xl md:text-2xl font-medium tracking-tight;
 }
 
 .prose h3 {
-  @apply mt-6 mb-2 text-xl font-medium tracking-tight;
+  @apply mt-[2rem] mb-[1rem] text-lg font-medium tracking-tight;
 }
 
 .prose h4 {
-  @apply mt-6 mb-2 text-lg font-medium tracking-tight;
+  @apply mt-[2rem] mb-[1rem] text-lg font-medium tracking-tight;
 }
 
 .prose strong {
@@ -122,6 +122,10 @@ html {
   /* Override removing top margin, causing layout shift */
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;
+}
+
+.prose blockquote {
+  @apply pl-[1rem] border-l-4 border-primary-blue;
 }
 
 pre::-webkit-scrollbar {

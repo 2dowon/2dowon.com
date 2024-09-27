@@ -67,12 +67,15 @@ export default async function Blog({ params }) {
           }),
         }}
       />
-      <h1 className="text-2xl font-semibold tracking-tighter title">{title}</h1>
-      <div className="flex items-center justify-between mt-2 mb-8 text-sm">
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+
+      <div className="pb-[1rem] md:pb-[1.5rem]">
+        <h1 className="text-2xl font-extrabold md:text-4xl title">{title}</h1>
+
+        <p className="text-md md:text-lg mt-[0.5rem] md:mt-[1rem] text-zinc-600 dark:text-zinc-400">
           {formatDate(date)}
         </p>
       </div>
+
       <article className="prose">
         <CustomMDX source={content} />
       </article>
