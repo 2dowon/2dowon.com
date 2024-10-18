@@ -1,7 +1,8 @@
 export interface IMetadata {
   title: string;
   date: string;
-  summary?: string;
+  summary: string;
+  thumbnail: string;
   tag?: string;
 }
 

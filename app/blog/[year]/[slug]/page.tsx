@@ -12,8 +12,12 @@ export function generateMetadata({ params }) {
     return;
   }
 
-  let { title, date: publishedTime, summary: description } = post.metadata;
-  let ogImage = `${baseUrl}/og?title=${encodeURIComponent(title)}`;
+  let {
+    title,
+    date: publishedTime,
+    summary: description,
+    thumbnail,
+  } = post.metadata;
 
   return {
     title,
@@ -26,7 +30,7 @@ export function generateMetadata({ params }) {
       url: `${baseUrl}/blog/${year}/${slug}`,
       images: [
         {
-          url: ogImage,
+          url: thumbnail,
         },
       ],
     },
@@ -37,7 +41,7 @@ export default async function Blog({ params }) {
   const { year, slug } = params;
   const post = getBlogPosts().find((post) => post.slug === slug);
   const { metadata, content } = post ?? {};
-  const { title = "", date = "", summary } = metadata ?? {};
+  const { title = "", date = "", summary, thumbnail } = metadata ?? {};
 
   if (!post) {
     notFound();
@@ -56,9 +60,7 @@ export default async function Blog({ params }) {
             datePublished: date,
             dateModified: date,
             description: summary,
-            // image: image
-            //   ? `${baseUrl}${image}`
-            //   : `/og?title=${encodeURIComponent(title)}`,
+            image: thumbnail,
             url: `${baseUrl}/posts/${year}/${slug}`,
             author: {
               "@type": "Person",
