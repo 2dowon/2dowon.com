@@ -7,12 +7,12 @@ import { notFound } from "next/navigation";
 export function generateMetadata({ params }) {
   const { year, slug } = params;
 
-  let post = getBlogPosts().find((post) => post.slug === slug);
+  const post = getBlogPosts().find((post) => post.slug === slug);
   if (!post) {
     return;
   }
 
-  let {
+  const {
     title,
     date: publishedTime,
     summary: description,
@@ -35,6 +35,21 @@ export function generateMetadata({ params }) {
       ],
     },
   };
+}
+
+export const dynamic = "force-static";
+export const revalidate = false;
+
+export async function generateStaticParams() {
+  const posts = getBlogPosts();
+
+  const blogPostList: { year: string; slug: string }[] = [];
+  for (const post of posts) {
+    const { year, slug } = post;
+    blogPostList.push({ year, slug });
+  }
+
+  return blogPostList;
 }
 
 export default async function Blog({ params }) {
