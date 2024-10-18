@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { highlight } from "sugar-high";
+import Callout from "./mdx/Callout";
 
 function Table({ data }) {
   let headers = data.headers.map((header, index) => (
@@ -97,6 +98,7 @@ let components = {
   a: CustomLink,
   code: Code,
   Table,
+  Callout: Callout,
 };
 
 export function CustomMDX(props) {
