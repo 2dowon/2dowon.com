@@ -43,7 +43,7 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className="text-black bg-white dark:text-zinc-50 dark:bg-primary-bg"
+      className="bg-white text-black dark:bg-primary-bg dark:text-zinc-50"
     >
       <head>
         <link
@@ -60,7 +60,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <main className="max-w-[55rem] mx-[1rem] mt-[2rem] md:mx-auto">
+        <main className="mx-[1rem] mt-[2rem] max-w-[55rem] md:mx-auto">
           <HeaderNav />
           {children}
           <Footer />

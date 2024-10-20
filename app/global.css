@@ -9,7 +9,6 @@
 
 :root {
   --sh-class: #2d5e9d;
-  --sh-identifier: #354150;
   --sh-sign: #8996a3;
   --sh-string: #007f7a;
   --sh-keyword: #e02518;
@@ -22,7 +21,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --sh-class: #4c97f8;
-    --sh-identifier: white;
     --sh-keyword: #f47067;
     --sh-string: #0fa295;
   }
@@ -37,7 +35,7 @@ html {
 }
 
 .prose .anchor {
-  @apply absolute invisible no-underline;
+  @apply invisible absolute no-underline;
 
   margin-left: -1em;
   padding-right: 0.5em;
@@ -51,7 +49,7 @@ html {
 }
 
 .prose a {
-  @apply underline transition-all decoration-zinc-400 dark:decoration-zinc-600 underline-offset-2 decoration-[0.1em];
+  @apply underline decoration-zinc-400 decoration-[0.1em] underline-offset-2 transition-all dark:decoration-zinc-600;
 }
 
 .prose .anchor:after {
@@ -64,11 +62,11 @@ html {
 }
 
 .prose pre {
-  @apply px-3 py-2 overflow-x-auto text-sm border rounded-lg bg-zinc-50 dark:bg-zinc-900 border-zinc-200 dark:border-zinc-900;
+  @apply overflow-x-auto rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-sm dark:border-zinc-900 dark:bg-zinc-900;
 }
 
 .prose code {
-  @apply px-1 py-0.5 rounded-lg;
+  @apply rounded-lg px-1 py-0.5;
 }
 
 .prose pre code {
@@ -83,27 +81,27 @@ html {
 
 .prose img {
   /* Don't apply styles to next/image */
-  @apply m-0 mt-[1rem] mb-[2rem];
+  @apply m-0 mb-[2rem] mt-[1rem];
 }
 
 .prose p {
-  @apply my-4 leading-[150%] text-zinc-800 dark:text-zinc-200;
+  @apply my-4 leading-[150%];
 }
 
 .prose h1 {
-  @apply mt-[4rem] mb-[1.5rem] text-2xl md:text-[1.7rem] md:leading-[2rem] font-semibold tracking-tight;
+  @apply mb-[1.5rem] mt-[4rem] text-2xl font-semibold tracking-tight md:text-[1.7rem] md:leading-[2rem];
 }
 
 .prose h2 {
-  @apply mt-[2rem] mb-[1rem] text-xl md:text-2xl font-medium tracking-tight;
+  @apply mb-[1rem] mt-[2rem] text-xl font-medium tracking-tight md:text-2xl;
 }
 
 .prose h3 {
-  @apply mt-[2rem] mb-[1rem] text-lg font-medium tracking-tight;
+  @apply mb-[1rem] mt-[2rem] text-lg font-medium tracking-tight;
 }
 
 .prose h4 {
-  @apply mt-[2rem] mb-[1rem] text-lg font-medium tracking-tight;
+  @apply mb-[1rem] mt-[2rem] text-lg font-medium tracking-tight;
 }
 
 .prose strong {
@@ -111,11 +109,11 @@ html {
 }
 
 .prose ul {
-  @apply pl-6 list-disc;
+  @apply list-disc pl-6;
 }
 
 .prose ol {
-  @apply pl-6 list-decimal;
+  @apply list-decimal pl-6;
 }
 
 .prose > :first-child {
@@ -125,7 +123,7 @@ html {
 }
 
 .prose blockquote {
-  @apply pl-[1rem] border-l-4 border-primary-blue;
+  @apply border-l-4 border-primary-blue pl-[1rem];
 }
 
 pre::-webkit-scrollbar {

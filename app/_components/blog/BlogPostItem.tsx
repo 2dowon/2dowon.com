@@ -8,17 +8,17 @@ const BlogPostItem = ({ post }: { post: IBlogPost }) => {
 
   return (
     <Link key={slug} href={`/blog/${year}/${slug}`}>
-      <div className="flex flex-col gap-y-[1rem] group">
+      <div className="group flex flex-col gap-y-[1rem]">
         <div>
-          <p className="text-base font-extrabold md:text-lg group-hover:underline underline-offset-4">
+          <p className="text-base font-extrabold underline-offset-4 group-hover:underline md:text-lg">
             {title}
           </p>
-          <p className="text:sm md:text-base line-clamp-1 text-zinc-100">
+          <p className="text:sm line-clamp-1 text-zinc-700 dark:text-zinc-100 md:text-base">
             {summary}
           </p>
         </div>
         <div>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 text-end">
+          <p className="text-end text-sm text-zinc-600 dark:text-zinc-400">
             {formatDate(date, false)}
           </p>
         </div>

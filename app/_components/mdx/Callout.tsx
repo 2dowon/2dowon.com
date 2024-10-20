@@ -41,7 +41,7 @@ const Callout = ({
 
   return (
     <div
-      className={`rounded-[0.4rem] px-[1rem] py-[0.5rem] my-[1rem] ${
+      className={`my-[1rem] rounded-[0.4rem] px-[1rem] py-[0.5rem] ${
         title ? "" : "flex items-center gap-x-[0.7rem]"
       }`}
       style={{ backgroundColor: bgColor }}
@@ -53,7 +53,8 @@ const Callout = ({
         {icon}
         {title && <span className="!my-0">{title}</span>}
       </div>
-      {children}
+
+      <div className="text-zinc-200">{children}</div>
     </div>
   );
 };
