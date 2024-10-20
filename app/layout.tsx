@@ -60,7 +60,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <main className="mx-[1rem] mt-[2rem] max-w-[55rem] md:mx-auto">
+        <main className="mx-[1rem] mt-[2rem] max-w-[50rem] md:mx-auto">
           <HeaderNav />
           {children}
           <Footer />

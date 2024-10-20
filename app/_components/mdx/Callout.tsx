@@ -41,8 +41,8 @@ const Callout = ({
 
   return (
     <div
-      className={`my-[1rem] rounded-[0.4rem] px-[1rem] py-[0.5rem] ${
-        title ? "" : "flex items-center gap-x-[0.7rem]"
+      className={`my-[1rem] rounded-[0.4rem] px-[1rem] pb-[0.5rem] ${
+        title ? "pt-[1.3rem]" : "flex items-center gap-x-[0.7rem] pt-[0.5rem]"
       }`}
       style={{ backgroundColor: bgColor }}
     >
@@ -51,7 +51,7 @@ const Callout = ({
         style={{ color: textColor }}
       >
         {icon}
-        {title && <span className="!my-0">{title}</span>}
+        {title && <span className="!my-0 pt-[0.1rem]">{title}</span>}
       </div>
 
       <div className="text-zinc-200">{children}</div>
