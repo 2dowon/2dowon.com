@@ -1,3 +1,4 @@
+import Giscus from "app/_components/Giscus";
 import { CustomMDX } from "app/_components/mdx";
 import { formatDate } from "app/_utils/date.util";
 import { getTagSnippets } from "app/_utils/mdx.utils";
@@ -71,15 +72,20 @@ export default async function Snippet({ params }) {
           }),
         }}
       />
-      <h1 className="text-2xl font-semibold tracking-tighter title">{title}</h1>
-      <div className="flex items-center justify-between mt-2 mb-8 text-sm">
+
+      <h1 className="title text-2xl font-semibold tracking-tighter">{title}</h1>
+
+      <div className="mb-8 mt-2 flex items-center justify-between text-sm">
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
           {formatDate(date)}
         </p>
       </div>
+
       <article className="prose">
         <CustomMDX source={content} />
       </article>
+
+      <Giscus />
     </section>
   );
 }

@@ -1,3 +1,4 @@
+import Giscus from "app/_components/Giscus";
 import { CustomMDX } from "app/_components/mdx";
 import { formatDate } from "app/_utils/date.util";
 import { getBlogPosts } from "app/_utils/mdx.utils";
@@ -86,9 +87,9 @@ export default async function Blog({ params }) {
       />
 
       <div className="pb-[1rem] md:pb-[1.5rem]">
-        <h1 className="text-2xl font-extrabold md:text-4xl title">{title}</h1>
+        <h1 className="title text-2xl font-extrabold md:text-4xl">{title}</h1>
 
-        <p className="text-md md:text-lg mt-[0.5rem] md:mt-[1rem] text-zinc-600 dark:text-zinc-400">
+        <p className="text-md mt-[0.5rem] text-zinc-600 dark:text-zinc-400 md:mt-[1rem] md:text-lg">
           {formatDate(date)}
         </p>
       </div>
@@ -96,6 +97,8 @@ export default async function Blog({ params }) {
       <article className="prose">
         <CustomMDX source={content} />
       </article>
+
+      <Giscus />
     </section>
   );
 }
