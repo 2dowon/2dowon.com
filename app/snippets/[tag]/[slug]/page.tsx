@@ -5,7 +5,11 @@ import { getTagSnippets } from "app/_utils/mdx.utils";
 import { baseUrl } from "app/sitemap";
 import { notFound } from "next/navigation";
 
-export function generateMetadata({ params }) {
+interface ISnippetPageProps {
+  params: { tag: string; slug: string };
+}
+
+export function generateMetadata({ params }: ISnippetPageProps) {
   const { tag, slug } = params;
 
   const snippet = getTagSnippets(tag).find((snippet) => snippet.slug === slug);
@@ -38,7 +42,7 @@ export function generateMetadata({ params }) {
   };
 }
 
-export default async function Snippet({ params }) {
+export default async function Snippet({ params }: ISnippetPageProps) {
   const { tag, slug } = params;
   const snippet = getTagSnippets(tag).find((snippet) => snippet.slug === slug);
   const { metadata, content } = snippet ?? {};

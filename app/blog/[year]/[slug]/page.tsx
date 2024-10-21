@@ -5,7 +5,11 @@ import { getBlogPosts } from "app/_utils/mdx.utils";
 import { baseUrl } from "app/sitemap";
 import { notFound } from "next/navigation";
 
-export function generateMetadata({ params }) {
+interface IBlogPostPageProps {
+  params: { year: string; slug: string };
+}
+
+export function generateMetadata({ params }: IBlogPostPageProps) {
   const { year, slug } = params;
 
   const post = getBlogPosts().find((post) => post.slug === slug);
@@ -53,7 +57,7 @@ export async function generateStaticParams() {
   return blogPostList;
 }
 
-export default async function Blog({ params }) {
+export default async function Blog({ params }: IBlogPostPageProps) {
   const { year, slug } = params;
   const post = getBlogPosts().find((post) => post.slug === slug);
   const { metadata, content } = post ?? {};
@@ -89,7 +93,7 @@ export default async function Blog({ params }) {
       <div className="pb-[1rem] md:pb-[1.5rem]">
         <h1 className="title text-2xl font-extrabold md:text-4xl">{title}</h1>
 
-        <p className="text-md mt-[0.5rem] text-zinc-600 dark:text-zinc-400 md:mt-[1rem] md:text-lg">
+        <p className="text-md mt-[0.5rem] text-zinc-600 md:mt-[1rem] md:text-lg dark:text-gray-200">
           {formatDate(date)}
         </p>
       </div>
