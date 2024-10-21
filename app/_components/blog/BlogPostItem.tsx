@@ -13,7 +13,7 @@ const BlogPostItem = ({ post }: { post: IBlogPost }) => {
       href={`/blog/${year}/${slug}`}
       className="flex flex-col gap-y-[1rem]"
     >
-      <div className="group relative aspect-video h-auto w-full overflow-hidden rounded-[0.4rem] transition-transform duration-200 hover:-translate-y-[0.7rem]">
+      <div className="group relative aspect-video h-auto w-full overflow-hidden rounded-[0.4rem] border transition-transform duration-200 hover:-translate-y-[0.7rem]">
         <Image
           src={thumbnail}
           alt={`${title} post thumbnail`}

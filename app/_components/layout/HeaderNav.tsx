@@ -2,17 +2,17 @@ import { siteConfig } from "app/config";
 import Image from "next/image";
 import Link from "next/link";
 import LogoImage from "public/static/images/dw_logo.png";
-import { ThemeSwitcher } from "../ThemeSwitcher";
+import { ThemeSwitch } from "../ThemeSwitch.client";
 
 const HeaderNav = () => {
   return (
-    <aside className="-ml-[8px] mb-[2rem] md:mb-[3rem] tracking-tight">
+    <aside className="-ml-[8px] mb-[2rem] tracking-tight md:mb-[3rem]">
       <div className="flex justify-between md:sticky md:top-20">
         <nav
-          className="relative flex flex-row items-start px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+          className="fade relative flex scroll-pr-6 flex-row items-start px-0 pb-0 md:relative md:overflow-auto"
           id="nav"
         >
-          <div className="flex space-x-[0.5rem] items-center">
+          <div className="flex items-center space-x-[0.5rem]">
             <Link href="/">
               <Image
                 src={LogoImage}
@@ -28,7 +28,7 @@ const HeaderNav = () => {
                 <Link
                   key={label}
                   href={path}
-                  className="relative flex px-2 py-1 m-1 align-middle transition-all hover:text-zinc-800 dark:hover:text-zinc-200"
+                  className="relative m-1 flex px-2 py-1 align-middle transition-all hover:text-zinc-800 dark:hover:text-zinc-200"
                 >
                   {label}
                 </Link>
@@ -36,7 +36,7 @@ const HeaderNav = () => {
             })}
           </div>
         </nav>
-        <ThemeSwitcher />
+        <ThemeSwitch />
       </div>
     </aside>
   );

@@ -1,4 +1,4 @@
-import { $ } from "app/_utils/style.utils";
+import { cn } from "app/_utils/style.utils";
 
 export default function SubTitle({
   className,
@@ -7,9 +7,9 @@ export default function SubTitle({
   return (
     <h2
       {...props}
-      className={$(
-        "text-xl mb-[0.5rem] md:mb-[1rem] font-bold tracking-tight md:text-3xl",
-        className
+      className={cn(
+        "mb-[0.5rem] text-xl font-bold tracking-tight md:mb-[1rem] md:text-3xl",
+        className,
       )}
     />
   );
