@@ -9,15 +9,16 @@ const BlogPostItem = ({ post }: { post: IBlogPost }) => {
 
   return (
     <Link
-      key={slug}
+      key={`blog_post_${title}`}
       href={`/blog/${year}/${slug}`}
       className="flex flex-col gap-y-[1rem]"
     >
-      <div className="group relative h-[13.5rem] w-[24rem] overflow-hidden rounded-[0.4rem] transition-transform duration-200 hover:-translate-y-[0.7rem]">
+      <div className="group relative aspect-video h-auto w-full overflow-hidden rounded-[0.4rem] transition-transform duration-200 hover:-translate-y-[0.7rem]">
         <Image
           src={thumbnail}
           alt={`${title} post thumbnail`}
           fill
+          sizes="(max-width: 599px) 100vw, 40vw"
           className="object-cover"
         />
         <div className="absolute z-10 h-full w-full group-hover:bg-black group-hover:opacity-50" />

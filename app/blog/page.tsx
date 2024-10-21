@@ -1,10 +1,8 @@
 import BlogPostsSection from "app/_components/blog/BlogPostsSection";
 import Title from "app/_components/common/Title";
 
-export const metadata = {
-  title: "Blog",
-  description: "Read my blog.",
-};
+export const dynamic = "force-static";
+export const revalidate = false;
 
 export default function Page() {
   return (
@@ -13,7 +11,7 @@ export default function Page() {
 
       <BlogPostsSection
         type="DEFAULT"
-        className="pc:grid pc:grid-cols-2 pc:gap-x-[1rem] pc:gap-y-[2rem] flex flex-col gap-y-[4rem]"
+        className="flex flex-col gap-y-[4rem] pc:grid pc:grid-cols-2 pc:gap-x-[1rem] pc:gap-y-[2rem]"
       />
     </section>
   );
