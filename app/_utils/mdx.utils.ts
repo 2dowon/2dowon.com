@@ -3,16 +3,26 @@ import fs from "fs";
 import path from "path";
 import { IBlogPost, IMetadata } from "./interfaces/mdx.interface";
 
-function parseFrontmatter(fileContent: string) {
-  let frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
-  let match = frontmatterRegex.exec(fileContent);
-  let frontMatterBlock = match![1];
-  let content = fileContent.replace(frontmatterRegex, "").trim();
-  let frontMatterLines = frontMatterBlock.trim().split("\n");
-  let metadata: Partial<IMetadata> = {};
+interface ParsedFrontmatter {
+  metadata: IMetadata;
+  content: string;
+}
+
+function parseFrontmatter(fileContent: string): ParsedFrontmatter {
+  const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
+  const match = frontmatterRegex.exec(fileContent);
+
+  if (!match) {
+    throw new Error("Invalid frontmatter format");
+  }
+
+  const frontMatterBlock = match[1];
+  const content = fileContent.replace(frontmatterRegex, "").trim();
+  const frontMatterLines = frontMatterBlock.trim().split("\n");
+  const metadata: Partial<IMetadata> = {};
 
   frontMatterLines.forEach((line) => {
-    let [key, ...valueArr] = line.split(": ");
+    const [key, ...valueArr] = line.split(": ");
     let value = valueArr.join(": ").trim();
     value = value.replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
     metadata[key.trim() as keyof IMetadata] = value;
@@ -21,21 +31,22 @@ function parseFrontmatter(fileContent: string) {
   return { metadata: metadata as IMetadata, content };
 }
 
-function getMDXFiles(dir) {
+function getMDXFiles(dir: string): string[] {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
-function readMDXFile(filePath) {
-  let rawContent = fs.readFileSync(filePath, "utf-8");
+function readMDXFile(filePath: string): ParsedFrontmatter {
+  const rawContent = fs.readFileSync(filePath, "utf-8");
   return parseFrontmatter(rawContent);
 }
 
-function getMDXData(dir) {
-  let mdxFiles = getMDXFiles(dir);
+function getMDXData(dir: string): IBlogPost[] {
+  const mdxFiles = getMDXFiles(dir);
+
   return mdxFiles.map((file) => {
-    let { metadata, content } = readMDXFile(path.join(dir, file));
-    let slug = path.basename(file, path.extname(file));
-    let year = metadata.date.slice(0, 4);
+    const { metadata, content } = readMDXFile(path.join(dir, file));
+    const slug = path.basename(file, path.extname(file));
+    const year = metadata.date.slice(0, 4);
 
     return {
       metadata,
@@ -46,33 +57,34 @@ function getMDXData(dir) {
   });
 }
 
-export function getBlogPosts() {
+export function getBlogPosts(): IBlogPost[] {
   const sinceYear = siteConfig.since;
   const currentYear = new Date().getFullYear();
-
   const mdxData: IBlogPost[] = [];
 
   for (let i = sinceYear; i <= currentYear; i++) {
-    mdxData.push(
-      ...getMDXData(path.join(process.cwd(), "archives", "blog", `${i}`))
+    const yearlyData = getMDXData(
+      path.join(process.cwd(), "archives", "blog", `${i}`),
     );
+    mdxData.push(...yearlyData);
   }
 
   return mdxData;
 }
 
-export function getAllSnippets() {
+export function getAllSnippets(): IBlogPost[] {
   const mdxData: IBlogPost[] = [];
 
   for (const tag of siteConfig.snippetTags) {
-    mdxData.push(
-      ...getMDXData(path.join(process.cwd(), "archives", "snippets", `${tag}`))
+    const tagData = getMDXData(
+      path.join(process.cwd(), "archives", "snippets", `${tag}`),
     );
+    mdxData.push(...tagData);
   }
 
   return mdxData;
 }
 
-export function getTagSnippets(tag: string) {
+export function getTagSnippets(tag: string): IBlogPost[] {
   return getMDXData(path.join(process.cwd(), "archives", "snippets", tag));
 }

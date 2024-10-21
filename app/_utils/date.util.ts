@@ -1,4 +1,4 @@
-export function formatYYMMDD(dateString) {
+export function formatYYMMDD(dateString: string) {
   const date = new Date(dateString);
   const year = String(date.getFullYear()).slice(2);
   const month = String(date.getMonth() + 1).padStart(2, "0");
