@@ -127,15 +127,25 @@ const components: MDXComponents = {
   Callout,
 };
 
-interface CustomMDXProps extends Omit<MDXRemoteProps, "components"> {
+interface CustomMDXProps extends Omit<MDXRemoteProps, "components" | "source"> {
   components?: MDXComponents;
+  source?: string;
 }
 
-export function CustomMDX(props: CustomMDXProps) {
+export function CustomMDX({
+  source,
+  components: customComponents,
+  ...rest
+}: CustomMDXProps) {
+  if (!source) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <MDXRemote
-      {...props}
-      components={{ ...components, ...(props.components || {}) }}
+      {...rest}
+      source={source}
+      components={{ ...components, ...(customComponents || {}) }}
     />
   );
 }
