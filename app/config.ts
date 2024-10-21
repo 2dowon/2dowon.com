@@ -13,7 +13,7 @@ export const siteConfig = {
       github: "https://github.com/2dowon",
       linkedin:
         "https://www.linkedin.com/in/2dowon?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      instagram: "",
+      // instagram: "",
     },
   },
   menus: [

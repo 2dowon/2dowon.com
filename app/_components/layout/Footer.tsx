@@ -1,6 +1,6 @@
 import { siteConfig } from "app/config";
 import { useMemo } from "react";
-import ContactsIcon from "../common/ContactsIcon";
+import ContactsIcon, { TContactsIconTypes } from "../common/ContactsIcon";
 import LinkExternal from "../common/LinkExternal";
 
 const Footer = () => {
@@ -17,14 +17,11 @@ const Footer = () => {
       <div className="flex flex-col items-end space-y-1">
         <div className="flex space-x-2">
           {Object.keys(siteConfig.author.contacts).map((sns) => {
-            let contact =
-              siteConfig.author.contacts[
-                sns as keyof typeof siteConfig.author.contacts
-              ];
+            let contact = siteConfig.author.contacts[sns as TContactsIconTypes];
 
             return !contact ? null : (
               <LinkExternal key={sns} href={contact}>
-                <ContactsIcon contact={sns} />
+                <ContactsIcon contact={sns as TContactsIconTypes} />
               </LinkExternal>
             );
           })}
