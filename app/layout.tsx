@@ -3,6 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import Footer from "./_components/layout/Footer";
 import HeaderNav from "./_components/layout/HeaderNav";
+import { ThemeProvider } from "./_components/ThemeProvider.client";
 import { themeEffect } from "./_utils/themeEffect";
 import "./global.css";
 import { baseUrl } from "./sitemap";
@@ -41,10 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="ko"
-      className="bg-white text-black dark:bg-primary-bg dark:text-zinc-50"
-    >
+    <html lang="ko" suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
@@ -60,13 +58,20 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <main className="mx-[1rem] mt-[2rem] md:mx-auto pc:max-w-[50rem]">
-          <HeaderNav />
-          {children}
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <main className="mx-[1rem] pt-[2rem] md:mx-auto pc:max-w-[50rem]">
+            <HeaderNav />
+            {children}
+            <Footer />
+            <Analytics />
+            <SpeedInsights />
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
