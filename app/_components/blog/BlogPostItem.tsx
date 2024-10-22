@@ -20,8 +20,9 @@ const BlogPostItem = ({ post }: { post: IBlogPost }) => {
           fill
           sizes="(max-width: 599px) 100vw, 40vw"
           className="object-cover"
+          priority
         />
-        <div className="absolute z-10 h-full w-full group-hover:bg-black group-hover:opacity-50" />
+        <div className="absolute z-10 w-full h-full group-hover:bg-black group-hover:opacity-50" />
         <p className="text:sm invisible absolute bottom-[0.5rem] z-20 px-[1rem] text-base text-zinc-100 group-hover:visible">
           {summary}
         </p>

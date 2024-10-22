@@ -1,7 +1,7 @@
 import Giscus from "app/_components/Giscus";
-import { CustomMDX } from "app/_components/mdx";
+import CustomMDX from "app/_components/mdx/CustomMdx";
 import { formatDate } from "app/_utils/date.util";
-import { getTagSnippets } from "app/_utils/mdx.utils";
+import { getTagSnippet } from "app/_utils/mdx.utils";
 import { baseUrl } from "app/sitemap";
 import { notFound } from "next/navigation";
 
@@ -12,7 +12,7 @@ interface ISnippetPageProps {
 export function generateMetadata({ params }: ISnippetPageProps) {
   const { tag, slug } = params;
 
-  const snippet = getTagSnippets(tag).find((snippet) => snippet.slug === slug);
+  const snippet = getTagSnippet({ tag, slug });
   if (!snippet) {
     return;
   }
@@ -44,7 +44,7 @@ export function generateMetadata({ params }: ISnippetPageProps) {
 
 export default async function Snippet({ params }: ISnippetPageProps) {
   const { tag, slug } = params;
-  const snippet = getTagSnippets(tag).find((snippet) => snippet.slug === slug);
+  const snippet = getTagSnippet({ tag, slug });
   const { metadata, content } = snippet ?? {};
   const { title = "", date = "", summary } = metadata ?? {};
 
@@ -77,9 +77,9 @@ export default async function Snippet({ params }: ISnippetPageProps) {
         }}
       />
 
-      <h1 className="title text-2xl font-semibold tracking-tighter">{title}</h1>
+      <h1 className="text-2xl font-semibold tracking-tighter title">{title}</h1>
 
-      <div className="mb-8 mt-2 flex items-center justify-between text-sm">
+      <div className="flex items-center justify-between mt-2 mb-8 text-sm">
         <p className="text-sm text-zinc-600 dark:text-zinc-400">
           {formatDate(date)}
         </p>

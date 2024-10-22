@@ -72,6 +72,29 @@ export function getBlogPosts(): IBlogPost[] {
   return mdxData;
 }
 
+export function getBlogPost({
+  slug,
+  year,
+}: {
+  slug: string;
+  year: string;
+}): IBlogPost | null {
+  const dir = path.join(process.cwd(), "archives", "blog", year);
+  const filePath = path.join(dir, `${slug}.mdx`);
+
+  if (fs.existsSync(filePath)) {
+    const { metadata, content } = readMDXFile(filePath);
+    return {
+      metadata,
+      year,
+      slug,
+      content,
+    };
+  }
+
+  return null;
+}
+
 export function getAllSnippets(): IBlogPost[] {
   const mdxData: IBlogPost[] = [];
 
@@ -83,6 +106,29 @@ export function getAllSnippets(): IBlogPost[] {
   }
 
   return mdxData;
+}
+
+export function getTagSnippet({
+  tag,
+  slug,
+}: {
+  tag: string;
+  slug: string;
+}): IBlogPost | null {
+  const dir = path.join(process.cwd(), "archives", "snippets", tag);
+  const filePath = path.join(dir, `${slug}.mdx`);
+
+  if (fs.existsSync(filePath)) {
+    const { metadata, content } = readMDXFile(filePath);
+    return {
+      metadata,
+      slug,
+      content,
+      year: metadata.date.slice(0, 4),
+    };
+  }
+
+  return null;
 }
 
 export function getTagSnippets(tag: string): IBlogPost[] {
