@@ -1,0 +1,132 @@
+.prose {
+  @apply w-full text-tx;
+
+  --shiki-color-text: var(--text-color);
+  --shiki-color-background: var(--gray3);
+  --shiki-token-constant: var(--gray4);
+  --shiki-token-string: var(--gray4);
+  --shiki-token-comment: var(--gray4);
+  --shiki-token-keyword: var(--gray4);
+  --shiki-token-parameter: var(--gray4);
+  --shiki-token-function: var(--gray4);
+  --shiki-token-string-expression: var(--gray5);
+  --shiki-token-punctuation: var(--gray5);
+  --shiki-token-link: var(--gray6);
+}
+
+.prose .anchor {
+  @apply absolute invisible no-underline;
+
+  margin-left: -1em;
+  padding-right: 0.5em;
+  width: 80%;
+  max-width: 700px;
+  cursor: pointer;
+}
+
+.prose .anchor:after {
+  @apply text-zinc-300 dark:text-zinc-700;
+  content: "#";
+}
+
+.prose *:hover > .anchor {
+  @apply visible;
+}
+
+.prose a {
+  @apply dark:decoration-black-8 decoration-gray-3 underline underline-offset-[0.25rem] transition-all;
+}
+
+.prose pre {
+  @apply px-3 py-2 overflow-x-auto text-sm border rounded-lg border-zinc-200 bg-zinc-50 dark:border-zinc-900 dark:bg-zinc-900;
+}
+
+.prose code {
+  @apply rounded-lg px-1 py-0.5;
+}
+
+.prose pre code {
+  @apply p-0;
+  border: initial;
+  line-height: 1.5;
+}
+
+.prose code span {
+  @apply font-medium;
+}
+
+.prose img {
+  /* Don't apply styles to next/image  */
+  @apply m-0 mb-[2rem] mt-[1rem];
+}
+
+.prose p {
+  @apply my-4 leading-[150%];
+}
+
+.prose h1 {
+  @apply mb-[1.5rem] mt-[4rem] text-2xl font-semibold tracking-tight md:text-[1.7rem] md:leading-[2rem];
+}
+
+.prose h2 {
+  @apply mb-[1rem] mt-[2rem] text-xl font-medium tracking-tight md:text-2xl;
+}
+
+.prose h3 {
+  @apply mb-[1rem] mt-[2rem] text-lg font-medium tracking-tight;
+}
+
+.prose strong {
+  @apply font-medium;
+}
+
+.prose ul {
+  @apply pl-6 list-disc;
+}
+
+.prose ol {
+  @apply pl-6 list-decimal;
+}
+
+.prose > :first-child {
+  /* Override removing top margin, causing layout shift  */
+  margin-top: 1.25em !important;
+  margin-bottom: 1.25em !important;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary-blue pl-[1rem];
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox  */
+}
+
+/*  Remove Safari input shadow on mobile  */
+input[type="text"],
+input[type="email"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.title {
+  text-wrap: balance;
+}
+
+.prose table {
+  empty-cells: hide;
+  @apply md:text-sm;
+}

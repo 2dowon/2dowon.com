@@ -1,3 +1,4 @@
+import { cn } from "app/_utils/style.utils";
 import { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { createElement } from "react";
@@ -48,6 +49,14 @@ const components: MDXComponents = {
   h6: createHeading(6),
   a: CustomLink,
   code: CustomCode,
+  hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
+    <hr aria-orientation="horizontal" {...props} />
+  ),
+  table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
+    <div className="w-full my-6 overflow-y-auto">
+      <table className={cn("w-full", className)} {...props} />
+    </div>
+  ),
   Callout,
 };
 

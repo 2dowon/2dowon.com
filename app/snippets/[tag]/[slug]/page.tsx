@@ -1,3 +1,5 @@
+import "app/_styles/prose.css";
+
 import Giscus from "app/_components/Giscus";
 import CustomMDX from "app/_components/mdx/CustomMdx";
 import { formatDate } from "app/_utils/date.util";

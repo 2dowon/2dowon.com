@@ -13,7 +13,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="pb-8 text-sm text-zinc-800 dark:text-zinc-400">
+    <footer className="pb-8 text-sm">
       <div className="flex flex-col items-end space-y-1">
         <div className="flex space-x-2">
           {Object.keys(siteConfig.author.contacts).map((sns) => {

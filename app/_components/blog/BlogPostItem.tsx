@@ -13,7 +13,7 @@ const BlogPostItem = ({ post }: { post: IBlogPost }) => {
       href={`/blog/${year}/${slug}`}
       className="flex flex-col gap-y-[1rem]"
     >
-      <div className="group relative aspect-video h-auto w-full overflow-hidden rounded-[0.4rem] border transition-transform duration-200 hover:-translate-y-[0.7rem]">
+      <div className="border-gray-2 group relative aspect-video h-auto w-full overflow-hidden rounded-[0.4rem] border transition-transform duration-200 hover:-translate-y-[0.7rem] dark:border-none">
         <Image
           src={thumbnail}
           alt={`${title} post thumbnail`}
@@ -23,13 +23,13 @@ const BlogPostItem = ({ post }: { post: IBlogPost }) => {
           priority
         />
         <div className="absolute z-10 w-full h-full group-hover:bg-black group-hover:opacity-50" />
-        <p className="text:sm invisible absolute bottom-[0.5rem] z-20 px-[1rem] text-base text-zinc-100 group-hover:visible">
+        <p className="invisible absolute bottom-[0.5rem] z-20 px-[1rem] text-base font-medium text-white group-hover:visible">
           {summary}
         </p>
       </div>
 
       <div>
-        <p className="mb-[0.5rem] text-end text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="text-gray-6 mb-[0.5rem] text-end text-sm">
           {formatDate(date, false)}
         </p>
         <p className="text-base font-extrabold underline-offset-4">{title}</p>

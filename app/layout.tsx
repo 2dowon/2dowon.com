@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 import Footer from "./_components/layout/Footer";
 import HeaderNav from "./_components/layout/HeaderNav";
 import { ThemeProvider } from "./_components/ThemeProvider.client";
+import "./_styles/global.css";
 import { themeEffect } from "./_utils/themeEffect";
-import "./global.css";
 import { baseUrl } from "./sitemap";
 
 export const metadata: Metadata = {

@@ -12,11 +12,11 @@ export default function Page() {
         </div>
         <Link
           href="https://sneaky-dewberry-efa.notion.site/Dowon-Lee-5d8a2bc7a6234b63ad24abfd895ee4e9?pvs=74"
-          className="text-base text-zinc-500"
+          className="text-base text-gray-4"
         >
           More about me →
         </Link>
-        <div className="mt-[2rem] text-zinc-600 text-sm">
+        <div className="mt-[2rem] text-sm text-zinc-600">
           2023년도 이전 글은
           <Link href="https://2dowon-log.netlify.app/" className="underline">
             {" "}

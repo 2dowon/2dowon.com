@@ -8,13 +8,11 @@ const SnippetItem = ({ tag, snippet }: { tag: string; snippet: IBlogPost }) => {
 
   return (
     <Link href={`/snippets/${tag}/${slug}`}>
-      <div className="flex flex-col border border-zinc-500 rounded-[0.4rem] p-[1rem] group">
-        <p className="font-bold group-hover:underline underline-offset-4">
+      <div className="group flex flex-col rounded-[0.4rem] border border-zinc-500 p-[1rem]">
+        <p className="font-bold underline-offset-4 group-hover:underline">
           {title}
         </p>
-        <p className="text-xs text-zinc-600 dark:text-zinc-400">
-          {formatDate(date, false)}
-        </p>
+        <p className="text-xs text-gray-6">{formatDate(date, false)}</p>
       </div>
     </Link>
   );

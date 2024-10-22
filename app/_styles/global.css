@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- color palette ---- */
+:root {
+  --fg: #1a1b1e;
+  --bg: #ffffff;
+  --text-color: #3a3a3a;
+
+  --gray1: #e5e7e9;
+  --gray2: #ceced0;
+  --gray3: #b5b7b9;
+  --gray4: #a1a0a5;
+  --gray5: #88898d;
+  --gray6: #717276;
+
+  --black1: #4e5258;
+  --black2: #494a51;
+  --black3: #40444a;
+  --black4: #3b3f42;
+  --black5: #34373d;
+  --black6: #2e3034;
+  --black7: #272b2e;
+  --black8: #1d1e22;
+  --black9: #181a1e;
+  --black10: #16171b;
+}
+
+.dark {
+  --fg: #f2f2f2;
+  --bg: #1a1b1e;
+  --text-color: #e5e5e7;
+
+  --gray1: #717276;
+  --gray2: #88898d;
+  --gray3: #a1a0a5;
+  --gray4: #b5b7b9;
+  --gray5: #ceced0;
+  --gray6: #e5e7e9;
+
+  --black1: #16171b;
+  --black2: #181a1e;
+  --black3: #1d1e22;
+  --black4: #272b2e;
+  --black5: #2e3034;
+  --black6: #34373d;
+  --black7: #3b3f42;
+  --black8: #40444a;
+  --black9: #494a51;
+  --black10: #4e5258;
+}
+
+/* ---- layout ---- */
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-padding-top: calc(var(--header-height) + var(--gap-2x));
+    scroll-behavior: smooth;
+    font-size: 16px;
+    font-family: "Pretendard Variable";
+  }
+
+  body {
+    @apply min-h-screen m-0 font-sans antialiased bg-bg text-fg;
+    --body-margin-left: max(24px, env(safe-area-inset-left));
+    --body-margin-right: max(24px, env(safe-area-inset-right));
+    padding-left: var(--body-margin-left);
+    padding-right: var(--body-margin-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  * {
+    @apply box-border border-black-5;
+  }
+
+  ::selection {
+    @apply shadow-none decoration-black-9;
+  }
+}
