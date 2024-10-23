@@ -1,8 +1,6 @@
 import Footer from "@/components/layout/Footer";
 import HeaderNav from "@/components/layout/HeaderNav";
-import { ThemeProvider } from "@/components/ThemeProvider.client";
 import "@/styles/global.css";
-import { themeEffect } from "@/utils/themeEffect";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
@@ -51,27 +49,15 @@ export default function RootLayout({
           crossOrigin="true"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css"
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(${themeEffect.toString()})()`,
-          }}
-        />
       </head>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main className="mx-[1rem] pt-[2rem] md:mx-auto pc:max-w-[50rem]">
-            <HeaderNav />
-            {children}
-            <Footer />
-            <Analytics />
-            <SpeedInsights />
-          </main>
-        </ThemeProvider>
+        <main className="mx-[1rem] pt-[2rem] md:mx-auto pc:max-w-[50rem]">
+          <HeaderNav />
+          {children}
+          <Footer />
+          <Analytics />
+          <SpeedInsights />
+        </main>
       </body>
     </html>
   );

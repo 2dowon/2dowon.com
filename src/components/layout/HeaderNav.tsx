@@ -2,7 +2,6 @@ import { siteConfig } from "@/app/config";
 import Image from "next/image";
 import Link from "next/link";
 import LogoImage from "public/static/images/dw_logo.png";
-import { ThemeSwitch } from "../ThemeSwitch.client";
 
 const HeaderNav = () => {
   return (
@@ -36,7 +35,6 @@ const HeaderNav = () => {
             })}
           </div>
         </nav>
-        <ThemeSwitch />
       </div>
     </aside>
   );

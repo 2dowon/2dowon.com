@@ -1,13 +1,12 @@
 "use client";
 
-import { useTheme } from "next-themes";
 import { useEffect, useRef } from "react";
 
 const Giscus = () => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const { resolvedTheme } = useTheme();
-  const theme = resolvedTheme === "dark" ? "dark" : "light";
+  // TODO: after adding dark mode
+  const theme = "light";
 
   useEffect(() => {
     if (!ref.current || ref.current.hasChildNodes()) {
