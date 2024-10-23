@@ -12,23 +12,23 @@ const CALLOUT_TYPE_META_MAP: {
 } = {
   note: {
     icon: <StickyNote className="w-[1.2rem]" />,
-    textColor: "#0178FC",
-    bgColor: "#1D2B3E",
+    textColor: "#126DDD",
+    bgColor: "#E9F1FC",
   },
   tip: {
     icon: <Flame className="w-[1.2rem]" />,
-    textColor: "#53DFDD",
-    bgColor: "#213539",
+    textColor: "#2DBFBC",
+    bgColor: "#E9F9F8",
   },
   quote: {
     icon: <Lightbulb className="w-[1.2rem]" />,
-    textColor: "#A882FF",
-    bgColor: "#2A2C3E",
+    textColor: "#7852EE",
+    bgColor: "#F2EFFE",
   },
   danger: {
     icon: <TriangleAlert className="w-[1.2rem]" />,
-    textColor: "#FA474C",
-    bgColor: "#32262B",
+    textColor: "#E4374B",
+    bgColor: "#FCEDEE",
   },
 };
 
@@ -54,7 +54,7 @@ const Callout = ({
         {title && <span className="!my-0 pt-[0.1rem]">{title}</span>}
       </div>
 
-      <div className="text-zinc-200">{children}</div>
+      <div className="text-slate-900">{children}</div>
     </div>
   );
 };
