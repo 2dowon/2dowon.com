@@ -14,20 +14,23 @@ export const siteConfig = {
       linkedin:
         "https://www.linkedin.com/in/2dowon?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
       // instagram: "",
+      // email: "dwon424@gmail.com",
+      legacyBlog: "https://2dowon-log.netlify.app/",
+      tistory: "https://dwon-lee.tistory.com/",
     },
   },
   menus: [
     {
-      label: "Blog",
-      path: "/blog",
-    },
-    {
-      label: "Snippets",
-      path: "/snippets",
+      label: "Home",
+      path: "/",
     },
     {
       label: "Archives",
       path: "/archives",
+    },
+    {
+      label: "About",
+      path: "/about",
     },
   ],
   snippetTags: ["git"],

@@ -1,3 +1,5 @@
+export type TPostType = "writing" | "note";
+
 export interface IMetadata {
   title: string;
   date: string;
@@ -6,9 +8,8 @@ export interface IMetadata {
   tag?: string;
 }
 
-export interface IBlogPost {
+export interface IPost {
   metadata: IMetadata;
-  year: string;
   slug: string;
   content: string;
 }

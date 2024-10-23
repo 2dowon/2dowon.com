@@ -1,7 +1,6 @@
-import { siteConfig } from "@/app/config";
 import fs from "fs";
 import path from "path";
-import { IBlogPost, IMetadata } from "./interfaces/mdx.interface";
+import { IMetadata, IPost, TPostType } from "./interfaces/mdx.interface";
 
 interface ParsedFrontmatter {
   metadata: IMetadata;
@@ -40,7 +39,7 @@ function readMDXFile(filePath: string): ParsedFrontmatter {
   return parseFrontmatter(rawContent);
 }
 
-function getMDXData(dir: string): IBlogPost[] {
+function getMDXData(dir: string): IPost[] {
   const mdxFiles = getMDXFiles(dir);
 
   return mdxFiles.map((file) => {
@@ -57,80 +56,44 @@ function getMDXData(dir: string): IBlogPost[] {
   });
 }
 
-export function getBlogPosts(): IBlogPost[] {
-  const sinceYear = siteConfig.since;
-  const currentYear = new Date().getFullYear();
-  const mdxData: IBlogPost[] = [];
+export function getPosts(type?: TPostType): IPost[] {
+  let mdxData: IPost[] = [];
 
-  for (let i = sinceYear; i <= currentYear; i++) {
-    const yearlyData = getMDXData(
-      path.join(process.cwd(), "archives", "blog", `${i}`),
-    );
-    mdxData.push(...yearlyData);
+  if (type) {
+    mdxData = getMDXData(path.join(process.cwd(), "post", type));
+  } else {
+    // type이 주어지지 않은 경우 "post" 폴더 내 모든 하위 폴더에서 데이터 검색
+    const postDir = path.join(process.cwd(), "post");
+
+    // 모든 하위 폴더 가져오기
+    const allTypes = fs.readdirSync(postDir);
+
+    allTypes.forEach((folder) => {
+      const folderData = getMDXData(path.join(postDir, folder));
+      mdxData = mdxData.concat(folderData);
+    });
   }
 
   return mdxData;
 }
 
-export function getBlogPost({
-  slug,
-  year,
-}: {
-  slug: string;
-  year: string;
-}): IBlogPost | null {
-  const dir = path.join(process.cwd(), "archives", "blog", year);
-  const filePath = path.join(dir, `${slug}.mdx`);
+export function getPost(slug: string): IPost | null {
+  const postDir = path.join(process.cwd(), "post");
+  // 모든 하위 폴더 가져오기
+  const allTypes = fs.readdirSync(postDir);
 
-  if (fs.existsSync(filePath)) {
-    const { metadata, content } = readMDXFile(filePath);
-    return {
-      metadata,
-      year,
-      slug,
-      content,
-    };
+  for (const folder of allTypes) {
+    const filePath = path.join(postDir, folder, `${slug}.mdx`);
+
+    if (fs.existsSync(filePath)) {
+      const { metadata, content } = readMDXFile(filePath);
+      return {
+        metadata,
+        slug,
+        content,
+      };
+    }
   }
 
   return null;
-}
-
-export function getAllSnippets(): IBlogPost[] {
-  const mdxData: IBlogPost[] = [];
-
-  for (const tag of siteConfig.snippetTags) {
-    const tagData = getMDXData(
-      path.join(process.cwd(), "archives", "snippets", `${tag}`),
-    );
-    mdxData.push(...tagData);
-  }
-
-  return mdxData;
-}
-
-export function getTagSnippet({
-  tag,
-  slug,
-}: {
-  tag: string;
-  slug: string;
-}): IBlogPost | null {
-  const dir = path.join(process.cwd(), "archives", "snippets", tag);
-  const filePath = path.join(dir, `${slug}.mdx`);
-
-  if (fs.existsSync(filePath)) {
-    const { metadata, content } = readMDXFile(filePath);
-    return {
-      metadata,
-      slug,
-      content,
-      year: metadata.date.slice(0, 4),
-    };
-  }
-
-  return null;
-}
-
-export function getTagSnippets(tag: string): IBlogPost[] {
-  return getMDXData(path.join(process.cwd(), "archives", "snippets", tag));
 }

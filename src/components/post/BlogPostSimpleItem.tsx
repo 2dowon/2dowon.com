@@ -1,13 +1,13 @@
 import { formatYYMMDD } from "@/utils/date.util";
-import { IBlogPost } from "@/utils/interfaces/mdx.interface";
+import { IPost } from "@/utils/interfaces/mdx.interface";
 import Link from "next/link";
 
-const BlogPostSimpleItem = ({ post }: { post: IBlogPost }) => {
-  const { year, slug, metadata } = post;
+const BlogPostSimpleItem = ({ post }: { post: IPost }) => {
+  const { slug, metadata } = post;
   const { title, date } = metadata;
 
   return (
-    <Link key={slug} href={`/post/${year}/${slug}`}>
+    <Link href={`/post/${slug}`}>
       <div className="flex items-center justify-between group text-black-4 dark:text-gray-5">
         <p className="text-base break-all underline-offset-4 group-hover:underline">
           {title}

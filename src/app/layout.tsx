@@ -1,10 +1,9 @@
-import Footer from "@/components/layout/Footer";
-import HeaderNav from "@/components/layout/HeaderNav";
+import Header from "@/components/layout/Header";
 import "@/styles/global.css";
+import { baseUrl } from "@/utils/const/url.const";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
-import { baseUrl } from "./sitemap";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -51,13 +50,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <main className="mx-[1rem] pt-[2rem] md:mx-auto pc:max-w-[50rem]">
-          <HeaderNav />
-          {children}
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-        </main>
+        <Header />
+        {children}
+        {/* <Footer /> */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

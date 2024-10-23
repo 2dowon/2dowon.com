@@ -1,13 +1,7 @@
 "use client";
 
-import NextImage, { ImageProps, StaticImageData } from "next/image";
+import NextImage, { ImageProps } from "next/image";
 import { memo } from "react";
-
-interface StaticRequire {
-  default: StaticImageData;
-}
-
-declare type StaticImport = StaticRequire | StaticImageData;
 
 const keyStr =
   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";

@@ -60,21 +60,4 @@
     font-size: 16px;
     font-family: "Pretendard Variable";
   }
-
-  body {
-    @apply min-h-screen m-0 font-sans antialiased bg-bg text-fg;
-    --body-margin-left: max(24px, env(safe-area-inset-left));
-    --body-margin-right: max(24px, env(safe-area-inset-right));
-    padding-left: var(--body-margin-left);
-    padding-right: var(--body-margin-right);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  * {
-    @apply box-border border-black-5;
-  }
-
-  ::selection {
-    @apply shadow-none decoration-black-9;
-  }
 }

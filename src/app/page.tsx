@@ -1,34 +1,24 @@
-import Title from "@/components/common/Title";
-import Link from "next/link";
+import Divider from "@/components/common/Divider";
+import Profile from "@/components/common/Profile";
+import SubHeader from "@/components/layout/SubHeader";
+import PostsSection from "@/components/post/PostsSection";
 
 export default function Page() {
   return (
     <section className="mb-[10rem]">
-      <div>
-        <Title>2dowon</Title>
-        <div>
-          <p>Frontend Developer</p>
-          <p>깊이 파기 위해 넓게 삽질하고 있습니다.</p>
-        </div>
-        <Link
-          href="https://sneaky-dewberry-efa.notion.site/Dowon-Lee-5d8a2bc7a6234b63ad24abfd895ee4e9?pvs=74"
-          className="text-base text-gray-4"
-        >
-          More about me →
-        </Link>
-        <div className="mt-[2rem] text-sm text-zinc-600">
-          2023년도 이전 글은
-          <Link href="https://2dowon-log.netlify.app/" className="underline">
-            {" "}
-            이전 블로그
-          </Link>
-          에서 확인할 수 있습니다!
-        </div>
-      </div>
+      <SubHeader />
 
-      {/* <div className="mt-[5rem]">
-        <p className="text-lg font-bold">Recent Posts ✨</p>
-      </div> */}
+      <Profile className="mt-[1rem]" />
+
+      <Divider className="my-[3rem]" />
+
+      <div className="pc:mx-auto pc:w-[50rem]">
+        <PostsSection
+          postType="writing"
+          viewType="home"
+          className="mx-[1rem] flex flex-col gap-y-[4rem] pc:grid pc:grid-cols-2 pc:gap-x-[1rem] pc:gap-y-[2rem]"
+        />
+      </div>
     </section>
   );
 }

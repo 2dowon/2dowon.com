@@ -1,18 +1,14 @@
 import { formatDate } from "@/utils/date.util";
-import { IBlogPost } from "@/utils/interfaces/mdx.interface";
+import { IPost } from "@/utils/interfaces/mdx.interface";
 import Image from "next/image";
 import Link from "next/link";
 
-const BlogPostItem = ({ post }: { post: IBlogPost }) => {
-  const { year, slug, metadata } = post;
+const WritingPostItem = ({ post }: { post: IPost }) => {
+  const { slug, metadata } = post;
   const { title, summary, date, thumbnail } = metadata;
 
   return (
-    <Link
-      key={`blog_post_${title}`}
-      href={`/blog/${year}/${slug}`}
-      className="flex flex-col gap-y-[1rem]"
-    >
+    <Link href={`/post/${slug}`} className="flex flex-col gap-y-[1rem]">
       <div className="group relative aspect-video h-auto w-full overflow-hidden rounded-[0.4rem] border border-gray-2 transition-transform duration-200 hover:-translate-y-[0.7rem] dark:border-none">
         <Image
           src={thumbnail}
@@ -39,4 +35,4 @@ const BlogPostItem = ({ post }: { post: IBlogPost }) => {
   );
 };
 
-export default BlogPostItem;
+export default WritingPostItem;
