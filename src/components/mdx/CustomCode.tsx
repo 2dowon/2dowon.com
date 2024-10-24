@@ -1,9 +1,15 @@
-import { highlight } from "sugar-high";
+import { DetailedHTMLProps, HTMLAttributes } from "react";
 
-const CustomCode = ({ children, ...props }: any) => {
-  const codeHTML = highlight(children);
-
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+const CustomCode = ({
+  className = "",
+  children,
+  ...props
+}: DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement>) => {
+  return (
+    <pre {...props} className={className}>
+      {children}
+    </pre>
+  );
 };
 
 export default CustomCode;

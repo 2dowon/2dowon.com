@@ -1,21 +1,9 @@
 .prose {
   @apply w-full text-tx;
-
-  --shiki-color-text: var(--text-color);
-  --shiki-color-background: var(--gray3);
-  --shiki-token-constant: var(--gray4);
-  --shiki-token-string: var(--gray4);
-  --shiki-token-comment: var(--gray4);
-  --shiki-token-keyword: var(--gray4);
-  --shiki-token-parameter: var(--gray4);
-  --shiki-token-function: var(--gray4);
-  --shiki-token-string-expression: var(--gray5);
-  --shiki-token-punctuation: var(--gray5);
-  --shiki-token-link: var(--gray6);
 }
 
 .prose .anchor {
-  @apply absolute invisible no-underline;
+  @apply invisible absolute no-underline;
 
   margin-left: -1em;
   padding-right: 0.5em;
@@ -34,25 +22,7 @@
 }
 
 .prose a {
-  @apply dark:decoration-black-8 decoration-gray-3 underline underline-offset-[0.25rem] transition-all;
-}
-
-.prose pre {
-  @apply px-3 py-2 overflow-x-auto text-sm border rounded-lg border-zinc-200 bg-zinc-50 dark:border-zinc-900 dark:bg-zinc-900;
-}
-
-.prose code {
-  @apply rounded-lg px-1 py-0.5;
-}
-
-.prose pre code {
-  @apply p-0;
-  border: initial;
-  line-height: 1.5;
-}
-
-.prose code span {
-  @apply font-medium;
+  @apply underline decoration-gray-3 underline-offset-[0.25rem] transition-all dark:decoration-black-8;
 }
 
 .prose img {
@@ -65,15 +35,15 @@
 }
 
 .prose h1 {
-  @apply mb-[1.5rem] mt-[4rem] text-2xl font-semibold tracking-tight md:text-[1.7rem] md:leading-[2rem];
+  @apply text-balance text-2xl font-extrabold text-slate-900 md:text-4xl;
 }
 
 .prose h2 {
-  @apply mb-[1rem] mt-[2rem] text-xl font-medium tracking-tight md:text-2xl;
+  @apply mb-[1rem] mt-[2rem] text-balance text-2xl font-medium tracking-tight pc:text-[1.7rem];
 }
 
 .prose h3 {
-  @apply mb-[1rem] mt-[2rem] text-lg font-medium tracking-tight;
+  @apply mb-[1rem] mt-[2rem] text-balance text-xl font-medium tracking-tight pc:text-2xl;
 }
 
 .prose strong {
@@ -81,11 +51,11 @@
 }
 
 .prose ul {
-  @apply pl-6 list-disc;
+  @apply list-disc pl-6;
 }
 
 .prose ol {
-  @apply pl-6 list-decimal;
+  @apply list-decimal pl-6;
 }
 
 .prose > :first-child {
@@ -96,15 +66,6 @@
 
 .prose blockquote {
   @apply border-l-4 border-primary-blue pl-[1rem];
-}
-
-pre::-webkit-scrollbar {
-  display: none;
-}
-
-pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox  */
 }
 
 /*  Remove Safari input shadow on mobile  */
@@ -120,10 +81,6 @@ table {
   max-width: fit-content;
   overflow-x: auto;
   white-space: nowrap;
-}
-
-.title {
-  text-wrap: balance;
 }
 
 .prose table {

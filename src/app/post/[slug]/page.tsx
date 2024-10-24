@@ -1,3 +1,4 @@
+import "@/styles/code.css";
 import "@/styles/prose.css";
 
 import Giscus from "@/components/Giscus";
@@ -69,17 +70,17 @@ export default async function PostPage({ params }: IPostPageProps) {
   }
 
   return (
-    <section className="mx-[1rem] my-[3rem] pc:mx-auto pc:w-[50rem]">
+    <section className="mx-[1rem] my-[1.5rem] pc:mx-auto pc:my-[3rem] pc:w-[50rem]">
       <div className="pb-[1rem] md:pb-[1.5rem]">
-        <h1 className="text-2xl font-extrabold title md:text-4xl">{title}</h1>
+        <h1 className="title text-2xl font-bold md:text-3xl">{title}</h1>
 
-        <p className="text-md mt-[0.5rem] text-zinc-600 dark:text-gray-200 md:mt-[1rem] md:text-lg">
+        <p className="pc:text-md mt-[0.5rem] text-sm text-zinc-600 dark:text-gray-200 pc:mt-[1rem]">
           {formatDate(date)}
         </p>
       </div>
 
       <article className="prose">
-        <CustomMDX source={content} />
+        <CustomMDX source={content!} />
       </article>
 
       <Giscus />

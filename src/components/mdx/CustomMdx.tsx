@@ -1,7 +1,12 @@
-import { cn } from "@/utils/style.utils";
 import { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { createElement } from "react";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypePrettyCode, { type Options } from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
+import remarkBreaks from "remark-breaks";
+import remarkGfm from "remark-gfm";
+import remarkUnwrapImages from "remark-unwrap-images";
 import Callout from "./Callout";
 import CustomCode from "./CustomCode";
 import CustomLink from "./CustomLink";
@@ -48,16 +53,16 @@ const components: MDXComponents = {
   h5: createHeading(5),
   h6: createHeading(6),
   a: CustomLink,
-  code: CustomCode,
+  pre: CustomCode,
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
-    <hr aria-orientation="horizontal" {...props} />
-  ),
-  table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 w-full overflow-y-auto">
-      <table className={cn("w-full", className)} {...props} />
-    </div>
+    <hr aria-orientation="horizontal" {...props} className="my-[3rem]" />
   ),
   Callout,
+};
+
+const prettyCodeOptions: Options = {
+  keepBackground: true,
+  theme: "github-dark-default",
 };
 
 const CustomMdx = ({ source }: { source?: string }) => {
@@ -65,7 +70,22 @@ const CustomMdx = ({ source }: { source?: string }) => {
     return null;
   }
 
-  return <MDXRemote source={source} components={{ ...components }} />;
+  return (
+    <MDXRemote
+      components={{ ...components }}
+      source={source}
+      options={{
+        mdxOptions: {
+          remarkPlugins: [remarkUnwrapImages, remarkGfm, remarkBreaks],
+          rehypePlugins: [
+            rehypeSlug,
+            rehypeAutolinkHeadings,
+            [rehypePrettyCode, prettyCodeOptions],
+          ],
+        },
+      }}
+    />
+  );
 };
 
 export default CustomMdx;

@@ -1,0 +1,73 @@
+.prose pre {
+  @apply text-sm;
+  line-height: 1.5;
+}
+
+figure[data-rehype-pretty-code-figure] {
+  @apply pb-[1rem];
+}
+
+figure[data-rehype-pretty-code-figure] pre {
+  @apply rounded-[0.4rem];
+}
+
+figure[data-rehype-pretty-code-figure] div[data-rehype-pretty-code-title] {
+  @apply pb-[0.5rem] text-slate-500;
+}
+
+figure[data-rehype-pretty-code-figure] pre {
+  overflow-x: auto;
+  scrollbar-width: none;
+  @apply py-[1.6rem];
+}
+
+figure[data-rehype-pretty-code-figure] pre::-webkit-scrollbar {
+  scrollbar-width: none;
+}
+
+figure[data-rehype-pretty-code-figure] pre [data-line] {
+  @apply px-[1rem];
+}
+
+figure[data-rehype-pretty-code-figure]
+  figcaption[data-rehype-pretty-code-caption] {
+  @apply pt-[0.5rem] text-slate-500;
+}
+
+/* Fenced Code block - line number style */
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
+code[data-line-numbers] > span[data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+
+  display: inline-block;
+  width: 0.5rem;
+  margin-right: 1.6rem;
+  text-align: right;
+  color: #616161;
+}
+
+code span[data-highlighted-line] {
+  @apply bg-slate-500 bg-opacity-50 py-[0.2rem];
+}
+
+/* inline code block style */
+:not(pre) > span[data-rehype-pretty-code-figure] > code {
+  @apply mx-[0.2rem] rounded px-[0.4rem] py-[0.2rem] align-middle;
+}
+
+:not(pre) > p > code {
+  @apply mx-[0.2rem] rounded border px-[0.4rem] py-[0.1rem];
+}
+
+pre::-webkit-scrollbar {
+  display: none;
+}
+
+pre {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox  */
+}
