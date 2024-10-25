@@ -1,4 +1,4 @@
-import { cn } from "@/utils/style.utils";
+import { cn } from "@/lib/utils";
 import React from "react";
 
 const Title = ({ className, ...props }: React.ComponentProps<"h1">) => {

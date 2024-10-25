@@ -1,6 +1,6 @@
 import { siteConfig } from "@/app/config";
 import { useMemo } from "react";
-import ContactsIcon, { TContactsIconTypes } from "../common/ContactsIcon";
+import ContactsIcon, { TContactsIconTypes } from "../common/ContactIcon";
 import LinkExternal from "../common/LinkExternal";
 
 const Footer = () => {

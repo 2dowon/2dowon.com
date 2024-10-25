@@ -1,4 +1,4 @@
-import { cn } from "@/utils/style.utils";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 
@@ -14,7 +14,7 @@ const LinkExternal = ({
   return (
     <Link
       href={href}
-      className={cn("text-primary hover:text-secondary transition", className)}
+      className={cn("text-primary transition hover:text-secondary", className)}
       target="_blank"
       rel="noopener noreferrer"
     >

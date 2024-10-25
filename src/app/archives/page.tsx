@@ -17,7 +17,7 @@ export default function Page() {
 
       <div className="space-y-[2rem] md:grid md:grid-cols-2 md:gap-x-[3rem] md:space-y-0">
         <div>
-          <SubTitle>Posts</SubTitle>
+          <SubTitle>Writing</SubTitle>
           <PostsSection
             postType="writing"
             viewType="archive"
@@ -26,7 +26,7 @@ export default function Page() {
         </div>
 
         <div>
-          <SubTitle>Snippets</SubTitle>
+          <SubTitle>Note</SubTitle>
           <PostsSection postType="note" viewType="archive" />
         </div>
       </div>
