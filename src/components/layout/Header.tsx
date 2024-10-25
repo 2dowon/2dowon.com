@@ -13,7 +13,7 @@ const Header = () => {
           height={300}
           className="h-[3rem] w-[3rem] object-contain"
         />
-        <h1 className="text-2xl font-semibold">2dowon' log</h1>
+        <h1 className="text-2xl font-semibold">2dowon</h1>
       </Link>
     </header>
   );

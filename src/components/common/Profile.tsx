@@ -42,14 +42,14 @@ const contactsMap: IContact[] = [
   {
     key: "email",
     link: "mailto:dwon424@gmail.com",
-    tooltipText: "Email",
+    tooltipText: "dwon424@gmail.com",
     iconClassName: "h-[1.5rem] w-[1.5rem]",
     isManaged: true,
   },
   {
     key: "legacyBlog",
     link: "https://2dowon-log.netlify.app/",
-    tooltipText: "Legacy Blog",
+    tooltipText: "https://2dowon-log.netlify.app/",
     iconClassName: "h-[1.4rem] w-[1.4rem]",
     isManaged: false,
   },

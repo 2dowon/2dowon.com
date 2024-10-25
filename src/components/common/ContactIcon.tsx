@@ -1,7 +1,7 @@
 import EmailIcon from "../icons/EmailIcon";
 import GithubIcon from "../icons/GithubIcon";
-import LegacyBlogIcon from "../icons/LegacyBlogIcon";
 import LinkedinIcon from "../icons/LinkedinIcon";
+import NetlifyIcon from "../icons/NetlifyIcon";
 import TistoryIcon from "../icons/TistoryIcon";
 import { TContactsType } from "./Profile";
 
@@ -9,7 +9,7 @@ const icons: { [key in TContactsType]: any } = {
   github: GithubIcon,
   linkedin: LinkedinIcon,
   email: EmailIcon,
-  legacyBlog: LegacyBlogIcon,
+  legacyBlog: NetlifyIcon,
   tistory: TistoryIcon,
 };
 
