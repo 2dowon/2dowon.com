@@ -1,3 +1,4 @@
+import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import "@/styles/global.css";
 import { baseUrl } from "@/utils/const/url.const";
@@ -56,7 +57,7 @@ export default function RootLayout({
       <body>
         <Header />
         {children}
-        {/* <Footer /> */}
+        <Footer />
         <Analytics />
         <SpeedInsights />
       </body>
