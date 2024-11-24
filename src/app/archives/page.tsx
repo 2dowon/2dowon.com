@@ -27,7 +27,11 @@ export default function Page() {
 
         <div>
           <SubTitle>Note</SubTitle>
-          <PostsSection postType="note" viewType="archive" />
+          <PostsSection
+            postType="note"
+            viewType="archive"
+            className="flex flex-col space-y-[0.5rem] md:space-y-[1rem]"
+          />
         </div>
       </div>
     </section>
