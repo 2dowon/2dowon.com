@@ -1,5 +1,6 @@
 import { formatDate } from "@/utils/date.util";
 import { IPost } from "@/utils/interfaces/mdx.interface";
+import uniqueId from "lodash/uniqueId";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,6 +12,7 @@ const WritingPostItem = ({ post }: { post: IPost }) => {
     <Link href={`/post/${slug}`} className="flex flex-col gap-y-[1rem]">
       <div className="group relative aspect-video h-auto w-full overflow-hidden rounded-[0.4rem] border border-gray-2 transition-transform duration-200 hover:-translate-y-[0.7rem] dark:border-none">
         <Image
+          key={uniqueId("WritingPostThumbnail")}
           src={thumbnail}
           alt={`${title} post thumbnail`}
           fill
@@ -18,7 +20,7 @@ const WritingPostItem = ({ post }: { post: IPost }) => {
           className="object-cover"
           priority
         />
-        <div className="absolute z-10 w-full h-full group-hover:bg-black group-hover:opacity-50" />
+        <div className="absolute z-10 h-full w-full group-hover:bg-black group-hover:opacity-50" />
         <p className="invisible absolute bottom-[0.5rem] z-20 px-[1rem] text-base font-medium text-white group-hover:visible">
           {summary}
         </p>
