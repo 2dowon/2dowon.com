@@ -48,8 +48,8 @@ const contactsMap: IContact[] = [
   },
   {
     key: "legacyBlog",
-    link: "https://2dowon-log.netlify.app/",
-    tooltipText: "https://2dowon-log.netlify.app/",
+    link: "https://2dowon.github.io/",
+    tooltipText: "https://2dowon.github.io/",
     iconClassName: "h-[1.4rem] w-[1.4rem]",
     isManaged: false,
   },

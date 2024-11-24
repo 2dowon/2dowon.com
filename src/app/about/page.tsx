@@ -18,14 +18,6 @@ const page = () => {
       >
         More about me →
       </Link>
-      <div className="mt-[2rem] text-sm text-zinc-600">
-        2023년도 이전 글은
-        <Link href="https://2dowon-log.netlify.app/" className="underline">
-          {" "}
-          이전 블로그
-        </Link>
-        에서 확인할 수 있습니다!
-      </div>
     </div>
   );
 };
