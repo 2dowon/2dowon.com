@@ -2,10 +2,10 @@
 title: "CachedNetworkImage를 사용하는 Flutter 앱이 비정상 종료 될 때"
 date: "2024-03-09"
 summary: "Flutter 앱이 비정상 종료될 때 디버깅하는 과정 기록하기"
-thumbnail: "https://github.com/2dowon/2dowon.com/blob/main/public/static/images/articles/blog/2024/flutter-app-crashed-by-cached-network-image_1.jpeg?raw=true"
+thumbnail: "https://github.com/2dowon/2dowon.com/blob/main/public/static/images/post/writing/flutter-app-crashed-by-cached-network-image_1.jpeg?raw=true"
 ---
 
-![flutter-app-crashed-by-cached-network-image](/static/images/articles/blog/2024/flutter-app-crashed-by-cached-network-image_1.jpeg)
+![flutter-app-crashed-by-cached-network-image](/static/images/post/writing/flutter-app-crashed-by-cached-network-image_1.jpeg)
 
 2023년 12월, 신규 프로젝트로 ‘브랜드 리뷰’ 기능을 오픈했었다. 그 당시에는 일정이 빠듯해 리뷰를 작성과 관련된 필수 기능만으로 해당 프로젝트를 오픈했었고, 그 이후 바로 유저들이 다른 사람들의 리뷰를 볼 수 있는 ‘브랜드 상세’ 페이지를 추가하는 등 고도화 작업을 진행해 지난 1월에 배포했다!
 
@@ -34,10 +34,10 @@ thumbnail: "https://github.com/2dowon/2dowon.com/blob/main/public/static/images/
 > 아, CachedNetworkImage는 이미지를 캐시에 저장하는데, 너무 많은 이미지를 저장해서 memory overflow가 발생한다면 앱이 강제 종료되지 않을까?
 
 그래서 CachedNetworkImage 문서를 다시 꼼꼼하게 읽어보기 시작했다. CachedNetworkImage에서는 [flutter_cache_manager](https://pub.dev/packages/flutter_cache_manager) 패키지를 이용해 캐시된 파일들을 관리하는데, 해당 문서를 보면 캐시된 파일들은 `maxNrOfCacheObjects` 와 `stalePeriod` 라는 값을 이용해 파일이 가장 최근에 사용된 시기를 파악해서 파일이 너무 많을 때, 마지막으로 사용한 순서대로, 그리고 파일이 오래된 기간보다 오래 사용되지 않았을 때 캐시된 파일을 지속적으로 삭제한다고 나와있다. (아래 이미지 참고)
-![](/static/images/articles/blog/2024/flutter-app-crashed-by-cached-network-image_2.png)
+![](/static/images/post/writing/flutter-app-crashed-by-cached-network-image_2.png)
 
 그렇다면 사실 CachedNetworkImage에서는 캐시된 파일들을 잘 관리해주고 있다는 뜻인데, 그럼에도 불구하고 일단 의심가는 이유가 있으니 추가적으로 [CachedNetworkImage repo의 issue](https://github.com/Baseflow/flutter_cached_network_image/issues)에서 우리와 비슷한 이슈가 있지는 않은지 찾아보기 시작했다. 그 결과 실제로 CachedNetworkImage repo issue에 [CachedNetworkImage가 memory overflow있다는 내용의 글](https://github.com/Baseflow/flutter_cached_network_image/issues/429)을 찾을 수 있었다.
-![](/static/images/articles/blog/2024/flutter-app-crashed-by-cached-network-image_3.png)
+![](/static/images/post/writing/flutter-app-crashed-by-cached-network-image_3.png)
 
 2020년도에 작성된 글이니까 현재 기준으로 거의 4년 전에 open된 issue이지만, 최근까지도 관련해서 이슈가 있다는 comment가 지속적으로 있었다. 다른 사람들도 겪고 있는 이슈를 확인하니 드디어 앱이 강제종료되는 현상의 원인이 CachedNetworkImage 패키지 때문이라는 확신을 할 수 있었고, 브랜드 리뷰의 이미지를 보여줄 때 CachedNetworkImage 대신 `Image.network` 로 사용할 수 있도록 수정한 결과 앱이 강제 종료되는 현상을 막을 수 있었다.
 그리고 추가로 `Image.network` 만 사용할 경우, 너무 큰 이미지를 렌더링할 때 많은 메모리가 필요하기 때문에 `cacheWidth` 속성을 추가로 사용해 메모리를 최적화할 수 있도록 했다. 그 때 [Save Your Memory Usage By Optimizing Network Images in Flutter](https://medium.com/make-android/save-your-memory-usage-by-optimizing-network-image-in-flutter-cbc9f8af47cd) 이 글을 참고했었는데, 많은 도움이 되었던 글이었지만 이 글의 마지막에는 또 다시 우리의 경우 문제가 되었던 CacheNetworkImage 패키지를 추천하고 있어서 뭐지? 하면서 웃었던 것 같다.
