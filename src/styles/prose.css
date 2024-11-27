@@ -31,15 +31,11 @@
 }
 
 .prose p {
-  @apply my-4 leading-[150%];
-}
-
-.prose h1 {
-  @apply text-balance text-2xl font-extrabold text-slate-900 md:text-4xl;
+  @apply my-4 leading-[170%];
 }
 
 .prose h2 {
-  @apply mb-[1rem] mt-[2rem] text-balance text-2xl font-medium tracking-tight pc:text-[1.7rem];
+  @apply mb-[2rem] mt-[4rem] text-balance text-2xl font-medium tracking-tight pc:text-[1.7rem];
 }
 
 .prose h3 {
@@ -51,11 +47,11 @@
 }
 
 .prose ul {
-  @apply list-disc pl-6;
+  @apply list-disc pl-[1rem] leading-[180%];
 }
 
 .prose ol {
-  @apply list-decimal pl-6;
+  @apply list-decimal pl-[1rem] leading-[180%];
 }
 
 .prose > :first-child {
@@ -65,7 +61,7 @@
 }
 
 .prose blockquote {
-  @apply border-l-4 border-primary-blue pl-[1rem];
+  @apply mt-[2rem] border-l-4 border-primary-blue pl-[1rem];
 }
 
 /*  Remove Safari input shadow on mobile  */

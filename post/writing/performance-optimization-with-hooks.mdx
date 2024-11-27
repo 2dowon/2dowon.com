@@ -28,9 +28,7 @@ const memoizedCallback = useCallback(() => {
 `useCallback`을 사용하면 만들어놨던 함수를 재사용할 수 있다.
 
 <Callout type="note">
-  `useMemo`와 비슷하게 렌더링 성능을 최적화해야 하는 상황에서 사용하는데,
-  `useMemo`는 특정 결과 값을 재사용 할 때 사용하는 반면, `useCallback` 은 특정
-  함수를 새로 만들지 않고 재사용하고 싶을때 사용한다는 차이점이 있다.
+  `useMemo`와 비슷하게 렌더링 성능을 최적화해야 하는 상황에서 사용하는데, `useMemo`는 특정 결과 값을 재사용 할 때 사용하는 반면, `useCallback` 은 특정 함수를 새로 만들지 않고 재사용하고 싶을때 사용한다는 차이점이 있다.
 </Callout>
 
 `useCallback` 의 첫 번째 파라미터에는 생성하고 싶은 함수를 넣고, 두번째 파라미터에는 deps 배열을 넣어주면 된다. 이 배열에는 어떤 값이 바뀌었을 때 함수를 새로 생성해야하는지를 명시해주면 된다. 두 번째 파라미터에 빈 배열을 전달하면 컴포넌트가 렌더링될 때 만들었던 함수를 계속해서 재사용한다. 배열 안에 특정 값을 넣으면 해당 값이 바뀌거나 새로운 항목이 추가될 때 새로 만들어진 함수를 사용하게 된다.
@@ -48,9 +46,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 `React.memo`는 컴포넌트의 props 가 바뀌지 않았다면, 리렌더링을 방지하여 컴포넌트의 리렌더링 성능 최적화를 해줄 수 있는 함수이다. `React.memo`를 사용하면 컴포넌트에서 리렌더링이 필요한 상황에서만 리렌더링을 하도록 설정해줄 수 있다.
 
 <Callout type="danger">
-  `React.memo`가 리렌더링 여부를 설정할 수 있다고 해서 렌더링을 방지하기 위해서
-  사용하면은 안된다고 한다. `React.memo`는 오직 **성능 최적화**를 위해서만
-  사용되어야 한다.
+  `React.memo`가 리렌더링 여부를 설정할 수 있다고 해서 렌더링을 방지하기 위해서 사용하면은 안된다고 한다. `React.memo`는 오직 **성능 최적화**를 위해서만 사용되어야 한다.
 </Callout>
 
 `React.memo` 는 props가 바뀌면 리렌더링된다. 이때 props가 바뀌었는지를 체크하기 위해서는 shallow 체크를 한다. 그렇기 때문에 **Memoized 된 component 에 object, fucntion을 props로 넘길 때는 반드시 `useCallback`, `useMemo`를 사용해서 넘겨야만 한다.**
@@ -95,9 +91,7 @@ React Developer Tools를 설치하고 나면 이제는 개발자 도구에서 Pr
   ![performance-optimization-with-hooks4](/static/images/post/writing/performance-optimization-with-hooks4.png)
 
 <Callout type="tip">
-  참고로 [React Profiler를 사용하여 성능
-  측정하기](https://medium.com/wantedjobs/react-profiler%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%84%B1%EB%8A%A5-%EC%B8%A1%EC%A0%95%ED%95%98%EA%B8%B0-5981dfb3d934)
-  글에 예시까지 포함하여 잘 정리되어 있다!
+  참고로 [React Profiler를 사용하여 성능 측정하기](https://medium.com/wantedjobs/react-profiler%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-%EC%84%B1%EB%8A%A5-%EC%B8%A1%EC%A0%95%ED%95%98%EA%B8%B0-5981dfb3d934) 글에 예시까지 포함하여 잘 정리되어 있다!
 </Callout>
 
 ## Ref.

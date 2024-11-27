@@ -4,7 +4,7 @@
 }
 
 figure[data-rehype-pretty-code-figure] {
-  @apply pb-[1rem];
+  @apply my-[1rem];
 }
 
 figure[data-rehype-pretty-code-figure] pre {
