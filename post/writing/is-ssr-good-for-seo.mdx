@@ -1,0 +1,72 @@
+---
+title: "SSR이 SEO에서 유리한 점"
+date: "2025-01-31"
+summary: "SSR이 CSR보다 왜 SEO에서 유리할까?"
+thumbnail: "https://github.com/2dowon/2dowon.com/blob/main/public/static/images/post/writing/is-ssr-good-for-seo-cover.png?raw=true"
+---
+
+마케팅 비용없이도 Organic Traffic 확보가 가능하기에 SEO에 대한 관심이 점점 높아지고 있다. 사실 해외에서는 SEO가 너무 당연하지만, 국내에서는 최근 몇 년 사이에 중요도가 많이 올라갔다고 느껴진다. 아무래도 검색엔진 중에서 구글의 국내 점유율이 많이 증가하고 있는 덕분이지 않을까!
+
+그리고 보통 Server Side Rendering 방식을 적용해 SEO를 최적화할 수 있다고 알고 있다. 그래서 나도 SEO가 중요한 프로젝트, 서비스를 할 때는 Next.js와 같은 프레임워크를 이용해 SSR을 쉽게 적용하고는 했다.
+
+<Callout type="note" title="SEO란">
+  웹페이지가 Search Engine에 의해 노출이 되기 쉽도록 설정해주는 것을 SEO(Search Engine Optimization), 다시 말해 검색엔진 최적화라고 한다.
+</Callout>
+
+그렇다면 SSR이 SEO를 최적화할 수 있다고 하는데, CSR에 비해 유리한 점이 무엇일까? 
+이 질문이 바로 이 글의 본론이지만, 본론에 들어가기 앞서 SSR과 CSR의 개념을 가볍게 정리하고 넘어가려고 한다.
+
+## CSR과 SSR
+
+### CSR (Client Side Rendering)
+![](/static/images/post/writing/is-ssr-good-for-seo-1.jpeg)
+
+CSR은 렌더링하는 주체가 클라이언트인 경우로, HTML, JS, CSS 등을 서버로부터 받아서 내용을 보여준다. CSR은 한번 로딩되면 빠른 UX를 제공하고 서버의 부하가 적다는 장점이 있지만, 서버로부터 모든 자원을 다 받은 후에 렌더링하기 때문에 일반적으로 페이지 로딩 시간이 길고 (서버 응답시간이 느리다면 더 길다), 초기에 빈 HTML을 받아서 사용하기 때문에 SEO 관점에서도 좋지 않다는 단점이 있다.
+
+### SSR (Server Side Rendering)
+![](/static/images/post/writing/is-ssr-good-for-seo-2.jpeg)
+
+SSR은 렌더링하는 주체가 서버로 유저가 페이지를 요청할 때마다 서버에서 렌더된 HTML을 응답받은 후 JS 등 자원을 받아 유저에게 UX를 제공한다. 그렇기 때문에 CSR과 반대로 페이지 로딩시간이 빠르고, SEO 관점에서도 좋다. 데이터를 서버에서 가져오기 때문에 보안도 뛰어나고, FCP, LCP, CLS와 같은 웹 성능 지표 향상에도 좋다. (FID 지표는 악화된다.) 
+하지만 JS를 뒤늦게 받아오기 때문에 유저 인터랙션이 필요한 경우에는 속도가 느리고, 서버의 부담이 증가한다는 단점이 있다.
+
+## SSR이 SEO에서 유리한 점
+
+### 1. 크롤러가 웹 사이트를 방문했을 때 HTML이 잘 준비되어 있다
+
+SSR은 렌더링하는 주체가 서버로 서버에서 렌더된 HTML을 응답받는다. 그렇기에 크롤러가 페이지에 방문했을 때 이미 완성된 잘 준비된 HTML을 가져갈 수 있다. 반면 CSR은 렌더링하는 주체가 클라이언트인 경우로, HTML, JS, CSS 등을 서버로부터 받아서 이 내용을 보여주기 때문에 크롤러가 페이지에 방문했을 때 HTML은 빈 껍데기이다. 따라서 일반적으로 CSR이 SEO에 불리하다고 한다.
+
+<Callout type="quote" title="진짜로 CSR이 SEO에 불리할까? 🤔">
+  일반적으로 SEO를 최적화할 때 국내에서는 구글, 네이버 정도의 검색엔진을 고려한다. 구글, 네이버와 같은 주요 검색엔진은 자바스크립트가 내장된 크롤러를 사용하고 있기에 결국 CSR의 경우여도 어느정도는 크롤링이 가능하다.
+  - [구글 검색 크롤러 문서](https://developers.google.com/search/docs/crawling-indexing/javascript/dynamic-rendering?hl=ko)
+  - [네이버 검색 크롤러 문서](https://searchadvisor.naver.com/guide/seo-advanced-javascript)
+</Callout>
+
+결국 위 이유만 봤을 때는 SSR이 SEO에 유리하긴 하지만, 서버에서 렌더된 HTML만으로 SSR이 SEO에 유리하다고 말하기에는 부족해 보인다. 
+
+(🚀  다만 크롤러가 Javascript를 실행하더라도 loading 상태의 UI를 긁어갈 수도 있고, Javascript를 실행하는 비용이 비싸서 실행을 안할 수도 있다는 점에서 결국 SSR이 CSR보다는 SEO에 유리하다고 볼 수 있다. )
+
+### 2. 적절한 메타데이터를 적용할 수 있다
+
+SEO에서는 메타데이터도 중요하다. 메타데이터인 title, meta 태그를 통해 검색엔진이 해당 문서가 어떤 문서인지 파악할 수 있게 해주고, 그 결과 관련 키워드를 검색했을 때 노출될 확률이 높아지기 때문이다. 특히 메타데이터 중 OG(Open Graph) 태그는 콘텐츠를 공유할 때도 중요하다.
+
+**이렇게 중요한 메타데이터는 CSR에서는 적용하기가 어렵다.** CSR은 SPA(Single Page Application)로 사실상 1개의 HTML 파일이기 때문에 결국 모든 페이지가 하나의 메타데이터를 제공하기 때문이다. 다시 말해 CSR에서는 Javascript가 실행되어야 동적으로 메타 태그를 적용해 각 페이지마다 적절한 메타데이터가 적용된다고 볼 수 있다.
+
+
+<Callout type="tip" title="CSR 환경에서 메타데이터를 적용하려면?">
+  만약 CSR 환경에서 OG 태그와 같은 메타데이터 적용이 필요한 경우라면 [[트러블슈팅기] CSR에서 동적 OG 메타태그 적용하기](https://techblog.woowahan.com/15469/) 이 글을 참고해보면 좋다! 
+</Callout>
+
+## 맺는 말
+
+사실 이 글은 최근 면접에서 **SSR이 SEO에서 유리한 점이 뭐가 있을까요?** 라는 질문을 받고 쓰게 된 글이다. 
+
+물론 면접 당시에도 위처럼 대답은 했었지만, 사실 그 때는 정확히는 1번의 대답 밖에 몰랐다. 당연히 SSR을 해서 잘 준비된 HTML을 로봇, 그러니까 크롤러가 긁어가서 SEO에 유리하다라고 생각은 했지만 '구글, 네이버와 같은 주요 검색엔진에서는 자바스크립트가 내장된 크롤러를 사용해 SSR이 유리하기는 해도 CSR도 SEO가 안되는 것은 아니다'라는 대답을 듣고서는 약간 멍했던 것 같다. 그리고 곰곰히 생각해보니까 '메타데이터도 SEO에 중요한데, CSR 환경에서는 메타 데이터 적용이 어렵다'라는게 생각이 났고, 관련해서 다른 개발자분들과 얘기를 하다보니 여기까지는 나처럼 생각의 결론이 쉽게 안 이어지는 경우가 많은 것 같았다.
+
+이 글은 약간 가볍게 적긴 했지만 SEO에 대한 관심이 많아지고 있는 만큼 어떻게 하면 SEO 최적화를 할 수 있는지, 그리고 왜 SSR이 SEO에 유리한지 다시 한 번 더 생각해보면 좋을 것 같다.
+
+## Ref.
+
+- [SSR - SSG - ISR - CSR in Next.js - The Ultimate Guide](https://dev.to/idrazhar/ssr-ssg-isr-csr-in-nextjs-the-ultimate-guide-256m)
+- [SEO 톺아보기 – 정말 SSR이 SEO에 좋을까?](https://tech.hancom.com/2024-07-26-ssr-seo/)
+
+
