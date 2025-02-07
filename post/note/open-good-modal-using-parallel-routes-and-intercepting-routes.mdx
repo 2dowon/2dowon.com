@@ -1,0 +1,135 @@
+---
+title: Parallel Routes & Intercepting Routes로 좋은 모달창 띄우기
+date: "2025-02-07"
+tag: "nextjs"
+---
+
+
+Next.js에서 App Router를 사용하면 Parallel Routes, Intercepting Routes를 사용할 수 있는데 이 2개의 routing을 잘 이용하면 더 좋은 모달창을 띄울 수 있다.
+
+> **더 좋은 모달창이란?**
+> 여기서 '좋은 모달창'이란 의미는 아래와 같다!
+> - 뒤로 가기를 통해 모달을 닫을 수 있다
+> - 모달도 페이지로 생성되기 때문에 SEO 관점에서도 좋다
+
+Parallel Routes, Intercepting Routes를 사용하지 않은 모달이 '나쁜' 모달이라는 뜻은 아니지만, 개인적으로 Next.js에서 Page Router를 사용하고 있을 때는 React portal을 활용하거나 CSS 처리를 이용해 모달을 노출하는 등의 방식으로 모달을 구현했었는데 그 때는 뒤로 가기를 하면 모달만 닫히는 것이 아니라 페이지가 뒤로 가기가 되어 유저 경험에도 좋지 않았고, 모달 안에 중요한 내용을 담을 경우에는 SEO 관점에서도 좋지 않았던 경험이 있어서 이렇게 표현해봤다.
+
+
+## Parallel Routes
+
+Parallel Routes는 동일한 레이아웃 내에서 하나 이상의 페이지를 동시에 또는 조건부로 보여줄 수 있는 routing이다. Next.js 공식문서에 따르면 보통 대시보드를 만들 때 같은 레이아웃에서 여러 페이지를 보여주고 싶을 때 사용한다고 되어있다. 
+
+Next.js 공식문서에 제공하는 예시인 아래 이미지를 살펴보면 `layout.tsx`에서 `@team`의 page와 `@analytics`의 page를 동시에 보여주고 있다.
+
+![](/static/images/post/note/open-good-modal-using-parallel-routes-and-intercepting-routes-1.png)
+
+
+그리고 결국 모달도 같은 레이아웃에서 모달을 포함해 2개의 페이지를 보여주는 것이기 때문에 이를 활용할 수 있다. 아래처럼 로그인 모달을 노출하기 위해서 `@modal`에 page를 만들고, 이를 `layout.tsx` 에서 prop으로 `modal`을 받아 원래 페이지인 `children`과 같이 렌더되도록 처리한다.
+
+
+![](/static/images/post/note/open-good-modal-using-parallel-routes-and-intercepting-routes-2.png)
+
+
+> layout.tsx
+``` javascript
+export default function Layout({
+  modal,
+  children,
+}: {
+  modal: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <> 
+	  {children}
+	  {modal}
+	</>
+  );
+}
+```
+
+
+<Callout type="tip" title="하지만 모달을 노출하고 싶은 경우에는 이것만으로는 부족하다">
+  모달은 한 페이지에 같이 노출하는 것은 맞지만, 나는 `/login` 이라는 path에 접근했을 때 로그인 페이지가 아닌 로그인 모달을 노출하고 싶은 것이기 때문이다.
+</Callout>
+
+## Intercepting Routes
+
+모달은 하나의 페이지에서 다른 페이지로 이동하지 않은 채로 콘텐츠를 보여줘야 해야 하는데, 이 경우 `Intercepting Routes`를 이용하면 된다. 좀 더 자세히 설명하면 나는 `/a` 라는 페이지에 있었는데, 모달이 노출되어야 하는 조건에 의해 실제 route는 `/b`로 이동하더라도 `/a` 라는 페이지는 그대로 보여지는 상황이다.
+
+
+<Callout type="note" title="">
+  이 때 실제 route는 `/b`로 이동하기 때문에 `/b` 에 해당하는 페이지도 만들어둬야 한다.
+</Callout>
+
+내가 만들고자 하는 예시의 프로세스는 아래와 같다.
+1. `/` path인 홈에서 '로그인' 버튼 클릭시 `/login` 으로 이동하고 로그인 모달이 노출된다
+2. 로그인 모달이 노출된 상황에서 뒤로가기 또는 모달을 닫을 경우 이전 path인 `/` 인 홈으로 돌아간다
+3. `/login` path로 바로 접근하거나 모달이 떠 있는 상황에서 새로고침시 로그인 페이지가 노출된다
+
+![](/static/images/post/note/open-good-modal-using-parallel-routes-and-intercepting-routes-3.gif)
+![](/static/images/post/note/open-good-modal-using-parallel-routes-and-intercepting-routes-4.png)
+
+
+> /@modal/(.)login/page.tsx
+> 참고로 Dialog, Button과 같은 UI component는 shadcn/ui를 사용했다.
+
+``` javascript
+"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useRouter } from "next/navigation";
+
+const LoginModal = () => {
+  const router = useRouter();
+
+  return (
+    <Dialog
+      defaultOpen
+      onOpenChange={(open) => {
+        if (!open) {
+          router.back();
+        }
+      }}
+    >
+      <DialogContent className="flex max-h-[80vh] w-[85vw] flex-col items-center rounded-[0.6rem] p-[2.4rem] pc:w-[30rem]">
+        <DialogHeader className="text-large font-semibold">
+          <DialogTitle> 로그인이 필요한 기능입니다.</DialogTitle>
+          <DialogDescription />
+        </DialogHeader>
+
+        <div className="mt-[2rem] flex w-full items-center space-x-[1rem]">
+          <Button
+            variant="outline"
+            className="w-full rounded-[0.6rem] py-[0.8rem]"
+            onClick={() => {
+              router.back();
+            }}
+          >
+            <p className="text-body font-medium">취소</p>
+          </Button>
+
+          <Button className="w-full rounded-[0.6rem] py-[0.8rem]">
+            로그인
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export default LoginModal;
+
+```
+
+
+## Ref.
+- https://nextjs.org/docs/app/building-your-application/routing/parallel-routes
+- https://nextjs.org/docs/app/building-your-application/routing/intercepting-routes
