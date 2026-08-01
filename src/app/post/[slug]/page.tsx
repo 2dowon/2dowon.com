@@ -3,9 +3,11 @@ import "@/styles/prose.css";
 
 import Giscus from "@/components/Giscus";
 import CustomMDX from "@/components/mdx/CustomMdx";
+import TableOfContents from "@/components/post/TableOfContents";
 import { baseUrl } from "@/utils/const/url.const";
 import { formatDate } from "@/utils/date.util";
 import { getPost, getPosts } from "@/utils/mdx.utils";
+import { getTableOfContents } from "@/utils/toc.util";
 import { notFound } from "next/navigation";
 
 interface IPostPageProps {
@@ -69,8 +71,10 @@ export default async function PostPage({ params }: IPostPageProps) {
     notFound();
   }
 
+  const tableOfContents = getTableOfContents(content!);
+
   return (
-    <section className="mx-[1rem] my-[1.5rem] pc:mx-auto pc:my-[3rem] pc:w-[50rem]">
+    <section className="relative mx-[1rem] my-[1.5rem] pc:mx-auto pc:my-[3rem] pc:w-[50rem]">
       <div className="pb-[1rem] md:pb-[1.5rem]">
         <h1 className="title text-2xl font-bold md:text-3xl">{title}</h1>
 
@@ -78,6 +82,8 @@ export default async function PostPage({ params }: IPostPageProps) {
           {formatDate(date)}
         </p>
       </div>
+
+      <TableOfContents items={tableOfContents} />
 
       <article className="prose">
         <CustomMDX source={content!} />

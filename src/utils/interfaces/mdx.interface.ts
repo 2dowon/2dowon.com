@@ -8,6 +8,13 @@ export interface IMetadata {
   tag?: string;
 }
 
+export interface ITocItem {
+  /** 헤딩 id를 가리키는 해시 링크 (e.g. `#제목`) */
+  url: string;
+  title: string;
+  items?: ITocItem[];
+}
+
 export interface IPost {
   metadata: IMetadata;
   slug: string;

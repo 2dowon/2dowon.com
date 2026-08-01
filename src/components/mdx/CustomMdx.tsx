@@ -1,6 +1,7 @@
+import { slugify } from "@/utils/toc.util";
 import { MDXComponents } from "mdx/types";
 import { MDXRemote } from "next-mdx-remote/rsc";
-import { createElement } from "react";
+import { createElement, isValidElement, type ReactNode } from "react";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode, { type Options } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
@@ -11,20 +12,26 @@ import Callout from "./Callout";
 import CustomCode from "./CustomCode";
 import CustomLink from "./CustomLink";
 
-function slugify(str: any) {
-  return str
-    .toString()
-    .toLowerCase()
-    .trim() // Remove whitespace from both ends of a string
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/&/g, "-and-") // Replace & with 'and'
-    .replace(/[^\p{L}\d\-]+/gu, "") // Remove all non-word characters except for -, but keep letters (including Korean)
-    .replace(/\-\-+/g, "-");
+/** `## \`code\` 제목`처럼 인라인 요소가 섞인 헤딩에서도 순수 텍스트만 뽑아낸다. */
+function getTextFromChildren(children: ReactNode): string {
+  if (typeof children === "string" || typeof children === "number") {
+    return children.toString();
+  }
+
+  if (Array.isArray(children)) {
+    return children.map(getTextFromChildren).join("");
+  }
+
+  if (isValidElement<{ children?: ReactNode }>(children)) {
+    return getTextFromChildren(children.props.children);
+  }
+
+  return "";
 }
 
 function createHeading(level: any) {
   const Heading = ({ children }: any) => {
-    const slug = slugify(children);
+    const slug = slugify(getTextFromChildren(children));
 
     return createElement(
       `h${level}`,
