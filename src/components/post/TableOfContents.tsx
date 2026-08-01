@@ -85,7 +85,7 @@ const TableOfContents = ({ items }: { items: ITocItem[] }) => {
 
   return (
     <nav className="absolute left-full top-0 hidden h-full xl:block">
-      <div className="animate-in fade-in slide-in-from-left-2 sticky top-[3rem] w-[14rem] pl-[3rem] duration-500">
+      <div className="animate-in fade-in slide-in-from-left-2 sticky top-[calc(var(--header-height)+2rem)] w-[14rem] pl-[3rem] duration-500">
         <h2 className="text-[0.625rem] font-medium tracking-widest text-gray-4 dark:text-black-8">
           ON THIS PAGE
         </h2>
